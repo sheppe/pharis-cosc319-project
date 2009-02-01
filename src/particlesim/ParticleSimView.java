@@ -101,9 +101,23 @@ public class ParticleSimView extends FrameView {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        jpGraphics = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jcbPType = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        jtNumP = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jlChars = new javax.swing.JList();
+        jLabel4 = new javax.swing.JLabel();
+        jtCharMod = new javax.swing.JTextField();
+        jbRun = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
+        jmRun = new javax.swing.JCheckBoxMenuItem();
+        jmLoad = new javax.swing.JMenuItem();
+        jmSave = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JSeparator();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
@@ -115,42 +129,161 @@ public class ParticleSimView extends FrameView {
 
         mainPanel.setName("mainPanel"); // NOI18N
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.setName("jpGraphics"); // NOI18N
+        jpGraphics.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jpGraphics.setName("jpGraphics"); // NOI18N
 
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+        org.jdesktop.layout.GroupLayout jpGraphicsLayout = new org.jdesktop.layout.GroupLayout(jpGraphics);
+        jpGraphics.setLayout(jpGraphicsLayout);
+        jpGraphicsLayout.setHorizontalGroup(
+            jpGraphicsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(0, 431, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 363, Short.MAX_VALUE)
+        jpGraphicsLayout.setVerticalGroup(
+            jpGraphicsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 360, Short.MAX_VALUE)
         );
+
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(particlesim.ParticleSimApp.class).getContext().getResourceMap(ParticleSimView.class);
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        jcbPType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Charged" }));
+        jcbPType.setEditor(null);
+        jcbPType.setName("jcbPType"); // NOI18N
+        jcbPType.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jcbPType_mouseReleased(evt);
+            }
+        });
+
+        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
+        jLabel2.setName("jLabel2"); // NOI18N
+
+        jtNumP.setText(resourceMap.getString("jtNumP.text")); // NOI18N
+        jtNumP.setName("jtNumP"); // NOI18N
+        jtNumP.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jtNumPInputMethodTextChanged(evt);
+            }
+        });
+
+        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
+        jLabel3.setName("jLabel3"); // NOI18N
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        jlChars.setName("jlChars"); // NOI18N
+        jlChars.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jlCharsValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jlChars);
+
+        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
+        jLabel4.setName("jLabel4"); // NOI18N
+
+        jtCharMod.setText(resourceMap.getString("jtCharMod.text")); // NOI18N
+        jtCharMod.setName("jtCharMod"); // NOI18N
+        jtCharMod.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jtCharModInputMethodTextChanged(evt);
+            }
+        });
+
+        jbRun.setText(resourceMap.getString("jbRun.text")); // NOI18N
+        jbRun.setName("jbRun"); // NOI18N
+        jbRun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbRunMouseClicked(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(mainPanelLayout.createSequentialGroup()
-                .addContainerGap(145, Short.MAX_VALUE)
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel1)
+                            .add(jcbPType, 0, 129, Short.MAX_VALUE)
+                            .add(jLabel3)
+                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                            .add(jLabel4)
+                            .add(jtCharMod, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                            .add(jLabel2)
+                            .add(jtNumP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .add(41, 41, 41)
+                        .add(jbRun)))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jpGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(jpGraphics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(mainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jLabel1)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jcbPType, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(jLabel3)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jLabel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jtCharMod, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(jLabel2)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jtNumP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 9, Short.MAX_VALUE)
+                .add(jbRun)
+                .addContainerGap())
         );
 
         menuBar.setName("menuBar"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(particlesim.ParticleSimApp.class).getContext().getResourceMap(ParticleSimView.class);
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
+
+        jmRun.setText(resourceMap.getString("jmRun.text")); // NOI18N
+        jmRun.setName("jmRun"); // NOI18N
+        jmRun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmRunMouseClicked(evt);
+            }
+        });
+        fileMenu.add(jmRun);
+
+        jmLoad.setText(resourceMap.getString("jmLoad.text")); // NOI18N
+        jmLoad.setName("jmLoad"); // NOI18N
+        fileMenu.add(jmLoad);
+
+        jmSave.setText(resourceMap.getString("jmSave.text")); // NOI18N
+        jmSave.setName("jmSave"); // NOI18N
+        fileMenu.add(jmSave);
+
+        jSeparator1.setName("jSeparator1"); // NOI18N
+        fileMenu.add(jSeparator1);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(particlesim.ParticleSimApp.class).getContext().getActionMap(ParticleSimView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
+        exitMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMenuItem_mouseClicked(evt);
+            }
+        });
         fileMenu.add(exitMenuItem);
 
         menuBar.add(fileMenu);
@@ -183,7 +316,7 @@ public class ParticleSimView extends FrameView {
             .add(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(statusMessageLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 542, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 412, Short.MAX_VALUE)
                 .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(statusAnimationLabel)
@@ -206,8 +339,51 @@ public class ParticleSimView extends FrameView {
         setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void exitMenuItem_mouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMenuItem_mouseClicked
+        ParticleSimApp.getApplication().exit();
+    }//GEN-LAST:event_exitMenuItem_mouseClicked
+
+    private void jcbPType_mouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbPType_mouseReleased
+        // Load the characteristics for the selected particle type.
+        
+    }//GEN-LAST:event_jcbPType_mouseReleased
+
+    private void jtCharModInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jtCharModInputMethodTextChanged
+        // Only numeric values are allowed in the jtCharMod textbox.
+    }//GEN-LAST:event_jtCharModInputMethodTextChanged
+
+    private void jlCharsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlCharsValueChanged
+        // Update the value in the jtCharMod textbox to reflect the selected item's value.
+    }//GEN-LAST:event_jlCharsValueChanged
+
+    private void jbRunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbRunMouseClicked
+        // Run the particle simulation.
+    }//GEN-LAST:event_jbRunMouseClicked
+
+    private void jtNumPInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jtNumPInputMethodTextChanged
+        // Only numeric values are allowed in the jtNumP textbox.
+    }//GEN-LAST:event_jtNumPInputMethodTextChanged
+
+    private void jmRunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmRunMouseClicked
+        // Run the particle simulation.
+    }//GEN-LAST:event_jmRunMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbRun;
+    private javax.swing.JComboBox jcbPType;
+    private javax.swing.JList jlChars;
+    private javax.swing.JMenuItem jmLoad;
+    private javax.swing.JCheckBoxMenuItem jmRun;
+    private javax.swing.JMenuItem jmSave;
+    public javax.swing.JPanel jpGraphics;
+    private javax.swing.JTextField jtCharMod;
+    private javax.swing.JTextField jtNumP;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
