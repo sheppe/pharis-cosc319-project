@@ -4,6 +4,9 @@
 
 package particlesim;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -15,11 +18,18 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import org.clapper.util.classutil.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import javax.swing.DefaultListModel;
+import javax.swing.SwingUtilities;
 
 /**
  * The application's main frame.
  */
 public class ParticleSimView extends FrameView {
+    // Used for running the calculations and drawing routines in a background thread.
+    DrawParticles draw;
 
     public ParticleSimView(SingleFrameApplication app) {
         super(app);
@@ -79,6 +89,9 @@ public class ParticleSimView extends FrameView {
                 }
             }
         });
+
+        // Call the routine to populate the particle combobox.
+        PopulateParticleCombo();
     }
 
     @Action
@@ -109,8 +122,6 @@ public class ParticleSimView extends FrameView {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jlChars = new javax.swing.JList();
-        jLabel4 = new javax.swing.JLabel();
-        jtCharMod = new javax.swing.JTextField();
         jbRun = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
@@ -130,6 +141,7 @@ public class ParticleSimView extends FrameView {
         mainPanel.setName("mainPanel"); // NOI18N
 
         jpGraphics.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jpGraphics.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
         jpGraphics.setName("jpGraphics"); // NOI18N
 
         org.jdesktop.layout.GroupLayout jpGraphicsLayout = new org.jdesktop.layout.GroupLayout(jpGraphics);
@@ -140,21 +152,19 @@ public class ParticleSimView extends FrameView {
         );
         jpGraphicsLayout.setVerticalGroup(
             jpGraphicsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 360, Short.MAX_VALUE)
+            .add(0, 361, Short.MAX_VALUE)
         );
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(particlesim.ParticleSimApp.class).getContext().getResourceMap(ParticleSimView.class);
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
-        jcbPType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Charged" }));
+        jcbPType.setFont(resourceMap.getFont("jcbPType.font")); // NOI18N
+        jcbPType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(particlesim.ParticleSimApp.class).getContext().getActionMap(ParticleSimView.class, this);
+        jcbPType.setAction(actionMap.get("ParticleTypeSelected")); // NOI18N
         jcbPType.setEditor(null);
         jcbPType.setName("jcbPType"); // NOI18N
-        jcbPType.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jcbPType_mouseReleased(evt);
-            }
-        });
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
@@ -182,19 +192,6 @@ public class ParticleSimView extends FrameView {
         });
         jScrollPane1.setViewportView(jlChars);
 
-        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
-        jLabel4.setName("jLabel4"); // NOI18N
-
-        jtCharMod.setText(resourceMap.getString("jtCharMod.text")); // NOI18N
-        jtCharMod.setName("jtCharMod"); // NOI18N
-        jtCharMod.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jtCharModInputMethodTextChanged(evt);
-            }
-        });
-
         jbRun.setText(resourceMap.getString("jbRun.text")); // NOI18N
         jbRun.setName("jbRun"); // NOI18N
         jbRun.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -210,19 +207,26 @@ public class ParticleSimView extends FrameView {
             .add(mainPanelLayout.createSequentialGroup()
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel1)
-                            .add(jcbPType, 0, 129, Short.MAX_VALUE)
-                            .add(jLabel3)
-                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                            .add(jLabel4)
-                            .add(jtCharMod, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                            .add(jLabel2)
-                            .add(jtNumP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
-                    .add(mainPanelLayout.createSequentialGroup()
                         .add(41, 41, 41)
-                        .add(jbRun)))
+                        .add(jbRun))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jLabel2))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jtNumP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jLabel1))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jcbPType, 0, 129, Short.MAX_VALUE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jLabel3))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jpGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
@@ -230,7 +234,11 @@ public class ParticleSimView extends FrameView {
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jpGraphics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .add(mainPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .add(7, 7, 7)
+                .add(jLabel2)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jtNumP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jcbPType, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -238,15 +246,7 @@ public class ParticleSimView extends FrameView {
                 .add(jLabel3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jtCharMod, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(jLabel2)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jtNumP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 9, Short.MAX_VALUE)
+                .add(60, 60, 60)
                 .add(jbRun)
                 .addContainerGap())
         );
@@ -276,7 +276,6 @@ public class ParticleSimView extends FrameView {
         jSeparator1.setName("jSeparator1"); // NOI18N
         fileMenu.add(jSeparator1);
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(particlesim.ParticleSimApp.class).getContext().getActionMap(ParticleSimView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         exitMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -343,21 +342,13 @@ public class ParticleSimView extends FrameView {
         ParticleSimApp.getApplication().exit();
     }//GEN-LAST:event_exitMenuItem_mouseClicked
 
-    private void jcbPType_mouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbPType_mouseReleased
-        // Load the characteristics for the selected particle type.
-        
-    }//GEN-LAST:event_jcbPType_mouseReleased
-
-    private void jtCharModInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jtCharModInputMethodTextChanged
-        // Only numeric values are allowed in the jtCharMod textbox.
-    }//GEN-LAST:event_jtCharModInputMethodTextChanged
-
     private void jlCharsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlCharsValueChanged
         // Update the value in the jtCharMod textbox to reflect the selected item's value.
     }//GEN-LAST:event_jlCharsValueChanged
 
     private void jbRunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbRunMouseClicked
         // Run the particle simulation.
+        this.ToggleRunStop();
     }//GEN-LAST:event_jbRunMouseClicked
 
     private void jtNumPInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jtNumPInputMethodTextChanged
@@ -366,13 +357,13 @@ public class ParticleSimView extends FrameView {
 
     private void jmRunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmRunMouseClicked
         // Run the particle simulation.
+        this.ToggleRunStop();
     }//GEN-LAST:event_jmRunMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbRun;
@@ -382,7 +373,6 @@ public class ParticleSimView extends FrameView {
     private javax.swing.JCheckBoxMenuItem jmRun;
     private javax.swing.JMenuItem jmSave;
     public javax.swing.JPanel jpGraphics;
-    private javax.swing.JTextField jtCharMod;
     private javax.swing.JTextField jtNumP;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
@@ -399,4 +389,96 @@ public class ParticleSimView extends FrameView {
     private int busyIconIndex = 0;
 
     private JDialog aboutBox;
+
+    private void PopulateParticleCombo()
+    {
+        // Populate the combo box with all of the classes that exist, which implement the IParticle interface.
+        ClassFinder finder = new ClassFinder();
+        finder.addClassPath();
+        
+        ClassFilter filter = new SubclassClassFilter(particlesim.IParticle.class);
+
+        Collection<ClassInfo> foundClasses = new ArrayList<ClassInfo>();
+        finder.findClasses (foundClasses, filter);
+
+        for (ClassInfo classInfo : foundClasses)
+            this.jcbPType.addItem(classInfo.getClassName()); //.substring(classInfo.getClassName().lastIndexOf(".")+1));
+
+    }
+
+    @Action
+    public void ParticleTypeSelected() {
+        String sSelItem = this.jcbPType.getSelectedItem().toString();
+
+        // Load and initialize the selected particle type.
+        Class p = null;
+        try {
+            p = Class.forName(sSelItem);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //TODO Make the following better. The Class.forName function above may be useful....
+        // Determine what particle type was selected and load the corresponding class.
+        if(p.toString().equals(ChargedParticle.class.toString()))
+        {
+            // Load the ChargedParticle class and fill the characteristics
+            // into the characteristics listbox.
+            ChargedParticle cp = new ChargedParticle();
+            DefaultListModel list = new DefaultListModel();
+            this.jlChars.setModel(list);
+
+            for(int i=0;i<cp.getCharacteristic().length;i++)
+                list.addElement(cp.getCharacteristic()[i].getCharacteristicType().getName());
+        }
+    }
+
+    private void DoRun()
+    {
+        // Clear the graphics panel.
+        this.jpGraphics.getGraphics().clearRect(0, 0, this.jpGraphics.getWidth(), this.jpGraphics.getHeight());
+
+        // An array of particles to pass between this and that.
+        particlesim.IParticle[] parts;
+
+        // Instantiate the Calculate class for the selected particle type
+        // and have it create the number particles indicated by the user.
+        String sSelItem = this.jcbPType.getSelectedItem().toString();
+
+        // Load and initialize the selected particle type.
+        Class p = null;
+        try {
+            p = Class.forName(sSelItem);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //TODO Make the following better. The Class.forName function above may be useful....
+        // Determine what particle type was selected and load the corresponding class.
+        if(p.toString().equals(ChargedParticle.class.toString()))
+        {
+            CalculateCharged cc = new CalculateCharged();
+            
+            // Initialize the particle array.
+            parts = cc.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.jpGraphics.getWidth(), this.jpGraphics.getHeight(), 0);
+
+            // In a new thread, launch the routine that handles the drawing and calculating of forces and positions.
+            draw = new DrawParticles(this.jpGraphics, parts);
+            draw.execute();
+        }
+    }
+
+    private void ToggleRunStop()
+    {
+        if(this.jbRun.getText().equals("Run"))
+        {
+            this.jbRun.setText("Stop");
+            this.DoRun();
+        }
+        else
+        {
+            this.jbRun.setText("Run");
+            draw.cancel(true);
+        }
+    }
 }

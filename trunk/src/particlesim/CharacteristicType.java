@@ -26,35 +26,35 @@ public class CharacteristicType implements ICharacteristicType {
 		name = "";
 	}
 
-	/* (non-Javadoc)
-	 * @see particleSim.ICharacteristicType#getDescription()
-	 */
+	/**
+     *
+     * @return
+     */
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return desc;
 	}
 
-	/* (non-Javadoc)
-	 * @see particleSim.ICharacteristicType#getName()
-	 */
+	/**
+     *
+     * @return
+     */
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
-	/* (non-Javadoc)
-	 * @see particleSim.ICharacteristicType#setDescription(java.lang.String)
-	 */
+	/**
+     *
+     * @param newValue
+     */
 	public void setDescription(String newValue) {
-		// TODO Auto-generated method stub
-
+		desc = newValue;
 	}
 
-	/* (non-Javadoc)
-	 * @see particleSim.ICharacteristicType#setName(java.lang.String)
-	 */
+	/**
+     *
+     * @param newValue
+     */
 	public void setName(String newValue) {
-		// TODO Auto-generated method stub
-
+		name = newValue;
 	}
 }
