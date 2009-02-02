@@ -28,51 +28,51 @@ public class Medium implements IMedium {
 		vscty = 0;
 	}
 
-	/* (non-Javadoc)
-	 * @see particleSim.IMedium#getGravity()
-	 */
+	/**
+     *
+     * @return
+     */
 	public float getGravity() {
-		// TODO Auto-generated method stub
-		return 0;
+		return gvty;
 	}
 
-	/* (non-Javadoc)
-	 * @see particleSim.IMedium#getName()
-	 */
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+    /**
+     * 
+     * @return
+     */
+    public String getName() {
+		return name;
 	}
 
-	/* (non-Javadoc)
-	 * @see particleSim.IMedium#getViscosity()
-	 */
+    /**
+     *
+     * @return
+     */
 	public float getViscosity() {
-		// TODO Auto-generated method stub
-		return 0;
+		return vscty;
 	}
 
-	/* (non-Javadoc)
-	 * @see particleSim.IMedium#setGravity(float)
-	 */
+    /**
+     *
+     * @param newValue
+     */
 	public void setGravity(float newValue) {
-		// TODO Auto-generated method stub
-
+        gvty = newValue;
 	}
 
-	/* (non-Javadoc)
-	 * @see particleSim.IMedium#setName(java.lang.String)
-	 */
+	/**
+     *
+     * @param newValue
+     */
 	public void setName(String newValue) {
-		// TODO Auto-generated method stub
-
+        name = newValue;
 	}
 
-	/* (non-Javadoc)
-	 * @see particleSim.IMedium#setViscosity(float)
-	 */
+	/**
+     *
+     * @param newValue
+     */
 	public void setViscosity(float newValue) {
-		// TODO Auto-generated method stub
-
-	}
+        vscty = newValue;
+    }
 }

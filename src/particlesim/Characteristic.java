@@ -26,29 +26,35 @@ public class Characteristic implements ICharacteristic {
 		bm = 0;
 	}
 
-	/* (non-Javadoc)
-	 * @see particleSim.ICharacteristic#getCharacteristicType()
-	 */
-	public CharacteristicType getCharacteristicType() {
-		// TODO Auto-generated method stub
-		return null;
+    /**
+     * 
+     * @return
+     */
+    public CharacteristicType getCharacteristicType() {
+		return ct;
 	}
 
-	/* (non-Javadoc)
-	 * @see particleSim.ICharacteristic#setCharacteristicType(particleSim.CharacteristicType)
-	 */
+    /**
+     *
+     * @param newValue
+     */
 	public void setCharacteristicType(CharacteristicType newValue) {
-		// TODO Auto-generated method stub
-
+		ct = newValue;
 	}
 
-	public float getBehaviourModifier() {
-		// TODO Auto-generated method stub
-		return 0;
+    /**
+     * 
+     * @return
+     */
+    public float getBehaviourModifier() {
+		return bm;
 	}
 
+    /**
+     *
+     * @param newValue
+     */
 	public void setBehaviourModifier(float newValue) {
-		// TODO Auto-generated method stub
-
+		bm = newValue;
 	}
 }
