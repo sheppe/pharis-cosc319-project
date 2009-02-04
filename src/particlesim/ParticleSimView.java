@@ -114,7 +114,6 @@ public class ParticleSimView extends FrameView {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        jpGraphics = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jcbPType = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
@@ -123,6 +122,7 @@ public class ParticleSimView extends FrameView {
         jScrollPane1 = new javax.swing.JScrollPane();
         jlChars = new javax.swing.JList();
         jbRun = new javax.swing.JButton();
+        bpGraphics = new particlesim.BufferedPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jmRun = new javax.swing.JCheckBoxMenuItem();
@@ -139,21 +139,6 @@ public class ParticleSimView extends FrameView {
         progressBar = new javax.swing.JProgressBar();
 
         mainPanel.setName("mainPanel"); // NOI18N
-
-        jpGraphics.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jpGraphics.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        jpGraphics.setName("jpGraphics"); // NOI18N
-
-        org.jdesktop.layout.GroupLayout jpGraphicsLayout = new org.jdesktop.layout.GroupLayout(jpGraphics);
-        jpGraphics.setLayout(jpGraphicsLayout);
-        jpGraphicsLayout.setHorizontalGroup(
-            jpGraphicsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 431, Short.MAX_VALUE)
-        );
-        jpGraphicsLayout.setVerticalGroup(
-            jpGraphicsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 361, Short.MAX_VALUE)
-        );
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(particlesim.ParticleSimApp.class).getContext().getResourceMap(ParticleSimView.class);
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
@@ -200,6 +185,20 @@ public class ParticleSimView extends FrameView {
             }
         });
 
+        bpGraphics.setBackground(resourceMap.getColor("bpGraphics.background")); // NOI18N
+        bpGraphics.setName("bpGraphics"); // NOI18N
+
+        org.jdesktop.layout.GroupLayout bpGraphicsLayout = new org.jdesktop.layout.GroupLayout(bpGraphics);
+        bpGraphics.setLayout(bpGraphicsLayout);
+        bpGraphicsLayout.setHorizontalGroup(
+            bpGraphicsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 437, Short.MAX_VALUE)
+        );
+        bpGraphicsLayout.setVerticalGroup(
+            bpGraphicsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 368, Short.MAX_VALUE)
+        );
+
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -228,11 +227,10 @@ public class ParticleSimView extends FrameView {
                         .addContainerGap()
                         .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jpGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(bpGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jpGraphics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .add(mainPanelLayout.createSequentialGroup()
                 .add(7, 7, 7)
                 .add(jLabel2)
@@ -249,6 +247,7 @@ public class ParticleSimView extends FrameView {
                 .add(60, 60, 60)
                 .add(jbRun)
                 .addContainerGap())
+            .add(bpGraphics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -315,7 +314,7 @@ public class ParticleSimView extends FrameView {
             .add(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(statusMessageLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 412, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 458, Short.MAX_VALUE)
                 .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(statusAnimationLabel)
@@ -361,6 +360,7 @@ public class ParticleSimView extends FrameView {
     }//GEN-LAST:event_jmRunMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private particlesim.BufferedPanel bpGraphics;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -372,7 +372,6 @@ public class ParticleSimView extends FrameView {
     private javax.swing.JMenuItem jmLoad;
     private javax.swing.JCheckBoxMenuItem jmRun;
     private javax.swing.JMenuItem jmSave;
-    public javax.swing.JPanel jpGraphics;
     private javax.swing.JTextField jtNumP;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
@@ -436,7 +435,7 @@ public class ParticleSimView extends FrameView {
     private void DoRun()
     {
         // Clear the graphics panel.
-        this.jpGraphics.getGraphics().clearRect(0, 0, this.jpGraphics.getWidth(), this.jpGraphics.getHeight());
+        this.bpGraphics.getGraphics().clearRect(0, 0, this.bpGraphics.getWidth(), this.bpGraphics.getHeight());
 
         // An array of particles to pass between this and that.
         particlesim.IParticle[] parts;
@@ -460,10 +459,10 @@ public class ParticleSimView extends FrameView {
             CalculateCharged cc = new CalculateCharged();
             
             // Initialize the particle array.
-            parts = cc.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.jpGraphics.getWidth(), this.jpGraphics.getHeight(), 0);
+            parts = cc.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.bpGraphics.getWidth(), this.bpGraphics.getHeight(), 0);
 
             // In a new thread, launch the routine that handles the drawing and calculating of forces and positions.
-            draw = new DrawParticles(this.jpGraphics, parts);
+            draw = new DrawParticles(this.bpGraphics, parts);
             draw.execute();
         }
     }
