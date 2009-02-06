@@ -22,7 +22,6 @@ import org.clapper.util.classutil.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.swing.DefaultListModel;
-import javax.swing.SwingUtilities;
 
 /**
  * The application's main frame.
@@ -122,7 +121,7 @@ public class ParticleSimView extends FrameView {
         jScrollPane1 = new javax.swing.JScrollPane();
         jlChars = new javax.swing.JList();
         jbRun = new javax.swing.JButton();
-        bpGraphics = new particlesim.BufferedPanel();
+        glGraphics = new javax.media.opengl.GLCanvas();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jmRun = new javax.swing.JCheckBoxMenuItem();
@@ -185,19 +184,7 @@ public class ParticleSimView extends FrameView {
             }
         });
 
-        bpGraphics.setBackground(resourceMap.getColor("bpGraphics.background")); // NOI18N
-        bpGraphics.setName("bpGraphics"); // NOI18N
-
-        org.jdesktop.layout.GroupLayout bpGraphicsLayout = new org.jdesktop.layout.GroupLayout(bpGraphics);
-        bpGraphics.setLayout(bpGraphicsLayout);
-        bpGraphicsLayout.setHorizontalGroup(
-            bpGraphicsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 437, Short.MAX_VALUE)
-        );
-        bpGraphicsLayout.setVerticalGroup(
-            bpGraphicsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 368, Short.MAX_VALUE)
-        );
+        glGraphics.setName("glGraphics"); // NOI18N
 
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -227,12 +214,12 @@ public class ParticleSimView extends FrameView {
                         .addContainerGap()
                         .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(bpGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(glGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 439, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(mainPanelLayout.createSequentialGroup()
-                .add(7, 7, 7)
+                .add(11, 11, 11)
                 .add(jLabel2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jtNumP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -247,7 +234,7 @@ public class ParticleSimView extends FrameView {
                 .add(60, 60, 60)
                 .add(jbRun)
                 .addContainerGap())
-            .add(bpGraphics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(glGraphics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -310,11 +297,11 @@ public class ParticleSimView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
             .add(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(statusMessageLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 458, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 464, Short.MAX_VALUE)
                 .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(statusAnimationLabel)
@@ -360,7 +347,7 @@ public class ParticleSimView extends FrameView {
     }//GEN-LAST:event_jmRunMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private particlesim.BufferedPanel bpGraphics;
+    private javax.media.opengl.GLCanvas glGraphics;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -434,9 +421,6 @@ public class ParticleSimView extends FrameView {
 
     private void DoRun()
     {
-        // Clear the graphics panel.
-        this.bpGraphics.getGraphics().clearRect(0, 0, this.bpGraphics.getWidth(), this.bpGraphics.getHeight());
-
         // An array of particles to pass between this and that.
         particlesim.IParticle[] parts;
 
@@ -459,11 +443,17 @@ public class ParticleSimView extends FrameView {
             CalculateCharged cc = new CalculateCharged();
             
             // Initialize the particle array.
-            parts = cc.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.bpGraphics.getWidth(), this.bpGraphics.getHeight(), 0);
+            parts = cc.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.glGraphics.getWidth(), this.glGraphics.getHeight(), 0);
 
             // In a new thread, launch the routine that handles the drawing and calculating of forces and positions.
-            draw = new DrawParticles(this.bpGraphics, parts);
-            draw.execute();
+            draw = new DrawParticles(this.glGraphics, parts);
+            try {
+                draw.doInBackground();
+                //draw.execute();
+            } catch (Exception ex) {
+                Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //draw.execute();
         }
     }
 
