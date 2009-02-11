@@ -111,13 +111,18 @@ public class CalculateCharged implements ICalculate {
      * @param Particles
      */
     public IParticle[] MoveParticles(IParticle[] Particles) {
+        // Used to adjust the rate of particle movement.
+        // Should be used for display purposes only!
+        //float movementModifier = 1.01f;
+
         // Convert the array to a list to ease parsing it.
         List<IParticle> lParticles = Arrays.asList(Particles);
 
+        // Move each particle on the X and Y axis based on calculated values.
         for(IParticle p1 : lParticles)
         {
-            p1.setX(p1.getX() + (p1.getCharacteristic()[1].getBehaviourModifier()));
-            p1.setY(p1.getY() + (p1.getCharacteristic()[2].getBehaviourModifier()));
+            p1.setX((p1.getX() + (p1.getCharacteristic()[1].getBehaviourModifier())));// * movementModifier);
+            p1.setY((p1.getY() + (p1.getCharacteristic()[2].getBehaviourModifier())));// * movementModifier);
         }
 
         return lParticles.toArray(Particles);

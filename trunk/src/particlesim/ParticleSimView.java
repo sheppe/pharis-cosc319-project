@@ -56,7 +56,7 @@ public class ParticleSimView extends FrameView {
         });
         idleIcon = resourceMap.getIcon("StatusBar.idleIcon");
         statusAnimationLabel.setIcon(idleIcon);
-        progressBar.setVisible(false);
+        /*progressBar.setVisible(false);
 
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
@@ -87,7 +87,8 @@ public class ParticleSimView extends FrameView {
                     progressBar.setValue(value);
                 }
             }
-        });
+        }
+        )*/;
 
         // Call the routine to populate the particle combobox.
         PopulateParticleCombo();
@@ -135,7 +136,7 @@ public class ParticleSimView extends FrameView {
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
         statusMessageLabel = new javax.swing.JLabel();
         statusAnimationLabel = new javax.swing.JLabel();
-        progressBar = new javax.swing.JProgressBar();
+        jlFps = new javax.swing.JLabel();
 
         mainPanel.setName("mainPanel"); // NOI18N
 
@@ -200,19 +201,19 @@ public class ParticleSimView extends FrameView {
                         .add(jLabel2))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .add(jtNumP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
+                        .add(jtNumP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .add(jLabel1))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .add(jcbPType, 0, 129, Short.MAX_VALUE))
+                        .add(jcbPType, 0, 123, Short.MAX_VALUE))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .add(jLabel3))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(glGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 439, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
@@ -221,7 +222,7 @@ public class ParticleSimView extends FrameView {
             .add(mainPanelLayout.createSequentialGroup()
                 .add(11, 11, 11)
                 .add(jLabel2)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 19, Short.MAX_VALUE)
                 .add(jtNumP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
                 .add(jLabel1)
@@ -234,7 +235,7 @@ public class ParticleSimView extends FrameView {
                 .add(60, 60, 60)
                 .add(jbRun)
                 .addContainerGap())
-            .add(glGraphics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+            .add(glGraphics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -291,32 +292,41 @@ public class ParticleSimView extends FrameView {
         statusAnimationLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         statusAnimationLabel.setName("statusAnimationLabel"); // NOI18N
 
-        progressBar.setName("progressBar"); // NOI18N
+        jlFps.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jlFps.setText(resourceMap.getString("jlFps.text")); // NOI18N
+        jlFps.setName("jlFps"); // NOI18N
 
         org.jdesktop.layout.GroupLayout statusPanelLayout = new org.jdesktop.layout.GroupLayout(statusPanel);
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
             .add(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(statusMessageLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 464, Short.MAX_VALUE)
-                .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 562, Short.MAX_VALUE)
                 .add(statusAnimationLabel)
                 .addContainerGap())
+            .add(statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(statusPanelLayout.createSequentialGroup()
+                    .add(0, 278, Short.MAX_VALUE)
+                    .add(jlFps)
+                    .add(0, 279, Short.MAX_VALUE)))
         );
         statusPanelLayout.setVerticalGroup(
             statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(statusPanelLayout.createSequentialGroup()
                 .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 9, Short.MAX_VALUE)
                 .add(statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(statusMessageLabel)
-                    .add(statusAnimationLabel)
-                    .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(statusAnimationLabel))
                 .add(3, 3, 3))
+            .add(statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(statusPanelLayout.createSequentialGroup()
+                    .add(0, 0, Short.MAX_VALUE)
+                    .add(jlFps)
+                    .add(0, 0, Short.MAX_VALUE)))
         );
 
         setComponent(mainPanel);
@@ -347,7 +357,7 @@ public class ParticleSimView extends FrameView {
     }//GEN-LAST:event_jmRunMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.media.opengl.GLCanvas glGraphics;
+    public javax.media.opengl.GLCanvas glGraphics;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -356,13 +366,13 @@ public class ParticleSimView extends FrameView {
     private javax.swing.JButton jbRun;
     private javax.swing.JComboBox jcbPType;
     private javax.swing.JList jlChars;
+    public javax.swing.JLabel jlFps;
     private javax.swing.JMenuItem jmLoad;
     private javax.swing.JCheckBoxMenuItem jmRun;
     private javax.swing.JMenuItem jmSave;
     private javax.swing.JTextField jtNumP;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JProgressBar progressBar;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
@@ -447,13 +457,22 @@ public class ParticleSimView extends FrameView {
 
             // In a new thread, launch the routine that handles the drawing and calculating of forces and positions.
             draw = new DrawParticles(this.glGraphics, parts);
+            draw.FpsLabel = this.jlFps;
+            
             try {
-                draw.doInBackground();
-                //draw.execute();
+                /* Uncomment below line to debug the DrawParticles class variable.
+                 * This is neccessary because threads outside of this one (the EDT)
+                 * cannot be debugged. Be sure to comment out the draw.execute();
+                 * line if you do this. */
+                //draw.doInBackground();
+
+                // Start the draw/calculation routine in a separate thread. It is
+                // done this way because the intense calculations lock up the
+                // interface otherwise.
+                draw.execute();
             } catch (Exception ex) {
                 Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //draw.execute();
         }
     }
 
@@ -468,6 +487,7 @@ public class ParticleSimView extends FrameView {
         {
             this.jbRun.setText("Run");
             draw.cancel(true);
+            draw = null;
         }
     }
 }

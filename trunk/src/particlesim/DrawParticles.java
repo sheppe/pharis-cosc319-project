@@ -17,16 +17,22 @@ import java.util.logging.Logger;
 import org.jdesktop.swingworker.SwingWorker;
 import javax.media.opengl.*;
 import javax.media.opengl.glu.*;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
  * @author Sheppe
  */
 public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEventListener {
-    
-    private CalculateCharged cc = new CalculateCharged();
+    // Publicly accessible variables. Used for passing particle arrays and graphical
+    // elements to this class for updating.
     public IParticle[] parts;
-    javax.media.opengl.GLCanvas GraphicsPanel;
+    public javax.media.opengl.GLCanvas GraphicsPanel;
+    public javax.swing.JLabel FpsLabel;
+
+    private CalculateCharged cc = new CalculateCharged();
+    final Animator animator = new Animator(this.GraphicsPanel);
 
     DrawParticles(javax.media.opengl.GLCanvas GraphicsPanel, IParticle[] Particles)
     {
@@ -39,6 +45,7 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
     private void drawParticle(GL gl) {
         // Call the functions to calculate particle forces and movements.
         GLUT glut = new GLUT();
+
         parts = cc.MoveParticles(cc.CalculateIteration(parts));
 
         float no_mat[] = { 0.0f, 0.0f, 0.0f, 1.0f };
@@ -71,28 +78,43 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
             i++;
 
             // Draw a sphere to represent the particle.
-            //gl.glRecti(-160 / 2, -160 / 2, 160 / 2, 160 / 2);
             gl.glPushMatrix();
-//            gl.glTranslatef(p1.getX(), p1.getY(), p1.getZ());
-            gl.glTranslatef(3.75f, 3.0f, 0.1f);
-            gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT, no_mat, 0);
-            gl.glMaterialfv(GL.GL_FRONT, GL.GL_DIFFUSE, mat_diffuse, 0);
-            gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, no_mat, 0);
-            gl.glMaterialfv(GL.GL_FRONT, GL.GL_SHININESS, no_shininess, 0);
-            gl.glMaterialfv(GL.GL_FRONT, GL.GL_EMISSION, no_mat, 0);
-            glut.glutSolidSphere(100.0, 20, 20);
+            gl.glTranslatef(p1.getX(), p1.getY(), p1.getZ());
+            glut.glutSolidSphere(10.0, 20, 20);
             gl.glPopMatrix();
+            if(this.isCancelled()) {
+                animator.stop();
+            }
         }
     }
 
     @Override
     protected Void doInBackground() throws Exception {
-        final Animator animator = new Animator(this.GraphicsPanel);
         animator.start();
+        int iFps = 0;
 
+        // For tracking FPS.
+        Date dStart = new Date();
+        long iDiff=0;
+        
         while(!this.isCancelled())
         {
+            // Start the OpenGl panel display routine.
             this.GraphicsPanel.display();
+
+            // Increment FPS counter.
+            iFps++;
+
+            // When a second passes, update the FPS label with the FPS counted.
+            Date dCount = new Date();
+            iDiff = dCount.getTime() - dStart.getTime();
+            if(iDiff >= 1000)
+            {
+                this.FpsLabel.setText("FPS: " + String.valueOf(iFps));
+                iFps=0;
+                dStart = new Date();
+            }
+
         }
         animator.stop();
         
@@ -104,49 +126,33 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
 
     public void init(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();
-        /*float ambient[] = { 0.0f, 0.0f, 0.0f, 1.0f };
-        float diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-        float specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-        float position[] = { 0.0f, 3.0f, 2.0f, 0.0f };
-        float lmodel_ambient[] = { 0.4f, 0.4f, 0.4f, 1.0f };
-        float local_view[] = { 0.0f };
-
-        gl.glEnable(GL.GL_DEPTH_TEST);
-        gl.glDepthFunc(GL.GL_LESS);
-
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, ambient, 0);
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, diffuse, 0);
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, position, 0);
-        gl.glLightModelfv(GL.GL_LIGHT_MODEL_AMBIENT, lmodel_ambient, 0);
-        gl.glLightModelfv(GL.GL_LIGHT_MODEL_LOCAL_VIEWER, local_view, 0);
-
-        gl.glEnable(GL.GL_LIGHTING);
-        gl.glEnable(GL.GL_LIGHT0);
-*/
         gl.glClearColor(0.0f, 0.1f, 0.1f, 0.0f);
-}
+    }
 
     public void display(GLAutoDrawable drawable) {
-         GL gl = drawable.getGL();
-         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-         drawParticle(gl);
-         gl.glFlush();
+        GL gl = drawable.getGL();
+        gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+        drawParticle(gl);
+        gl.glFlush();
     }
 
     public void reshape(GLAutoDrawable drawable, int x, int y, int w, int h) {
         GL gl = drawable.getGL();
-        gl.glViewport(0, 0, w, h);
         gl.glMatrixMode(GL.GL_PROJECTION);
         gl.glLoadIdentity();
-        gl.glOrtho(0.0, (float)w, 0.0, (float)h, -10.0, 10.0);
-/*if (w <= (h * 2)) //
+        gl.glViewport(0, 0, w, h);
+        gl.glOrtho(0.0, (float)w, (float)h, 0.0, 0.0, 10000.0);
+
+        /*if (w <= (h * 2)) //
     gl.glOrtho(-6.0, 6.0, -3.0 * ((float) h * 2) / (float) w, //
         3.0 * ((float) h * 2) / (float) w, -10.0, 10.0);
     else gl.glOrtho(-6.0 * (float) w / ((float) h * 2), //
-        6.0 * (float) w / ((float) h * 2), -3.0, 3.0, -10.0, 10.0);
-*/
+        6.0 * (float) w / ((float) h * 2), -3.0, 3.0, -10.0, 10.0);*/
+
         gl.glMatrixMode(GL.GL_MODELVIEW);
         gl.glLoadIdentity();
+
+
     }
 
     public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
