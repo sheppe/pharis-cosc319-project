@@ -51,7 +51,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
                   <Component id="jtNumP" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -65,7 +65,7 @@
                   <Component id="jbRun" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Component id="glGraphics" alignment="0" pref="372" max="32767" attributes="0"/>
+              <Component id="glGraphics" alignment="0" pref="385" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -150,6 +150,9 @@
           <Properties>
             <Property name="name" type="java.lang.String" value="glGraphics" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -253,11 +256,16 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="458" max="32767" attributes="0"/>
-                  <Component id="progressBar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="562" max="32767" attributes="0"/>
                   <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="278" max="32767" attributes="0"/>
+                      <Component id="jlFps" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="279" max="32767" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -265,13 +273,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="statusPanelSeparator" min="-2" pref="2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="9" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="statusMessageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="statusAnimationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="progressBar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jlFps" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -297,10 +311,15 @@
             <Property name="name" type="java.lang.String" value="statusAnimationLabel" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JProgressBar" name="progressBar">
+        <Component class="javax.swing.JLabel" name="jlFps">
           <Properties>
-            <Property name="name" type="java.lang.String" value="progressBar" noResource="true"/>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" resourceKey="jlFps.text"/>
+            <Property name="name" type="java.lang.String" value="jlFps" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
