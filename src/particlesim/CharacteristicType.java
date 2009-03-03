@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package particlesim;
 
 /**
- *
+ * Implementation of the CharacteristicType interface.
  * @author Sheppe
  */
 public class CharacteristicType implements ICharacteristicType {
@@ -18,7 +13,7 @@ public class CharacteristicType implements ICharacteristicType {
 	String name;
 
 	/**
-	 *
+	 * @see CharacteristicType#CharacteristicType()
 	 */
 	public CharacteristicType() {
 		// Initialize the variables that persist property values.
@@ -27,7 +22,7 @@ public class CharacteristicType implements ICharacteristicType {
 	}
 
 	/**
-     *
+     * @see CharacteristicType#getDescription()
      * @return
      */
 	public String getDescription() {
@@ -35,7 +30,7 @@ public class CharacteristicType implements ICharacteristicType {
 	}
 
 	/**
-     *
+     * @see CharacteristicType#getName()
      * @return
      */
 	public String getName() {
@@ -43,7 +38,7 @@ public class CharacteristicType implements ICharacteristicType {
 	}
 
 	/**
-     *
+     * @see CharacteristicType#setDescription(java.lang.String)
      * @param newValue
      */
 	public void setDescription(String newValue) {
@@ -51,7 +46,7 @@ public class CharacteristicType implements ICharacteristicType {
 	}
 
 	/**
-     *
+     * @see CharacteristicType#setName(java.lang.String)
      * @param newValue
      */
 	public void setName(String newValue) {

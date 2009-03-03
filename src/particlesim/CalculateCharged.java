@@ -1,19 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package particlesim;
 import java.util.List;
 import java.util.Arrays;
 
 /**
- *
+ * Prototype class for performing calculations on simple charged particles in
+ * open space, with no medium.
+ * @see ICalculate#()
  * @author Sheppe
  */
 public class CalculateCharged implements ICalculate {
     /**
-     *
+     * @see ICalculate#CalculateIteration(particlesim.IParticle[])
      * @param Particles
      * @return
      */
@@ -73,12 +70,13 @@ public class CalculateCharged implements ICalculate {
 	}
 
     /**
-     *
-     * @param NumParticles
-     * @param MaxX
-     * @param MaxY
-     * @param MaxZ
-     * @return
+     * Creates an array of charged particles.
+     * @see ICalculate#InitializeParticles(int, int, int, int)
+     * @param NumParticles The number of particles to create.
+     * @param MaxX The maximum extent of the X axis.
+     * @param MaxY The maximum extent of the Y axis.
+     * @param MaxZ The maximum extent of the Z axis.
+     * @return An array of particles as modified by the function.
      */
     public IParticle[] InitializeParticles(int NumParticles, int MaxX, int MaxY, int MaxZ) {
         // Create our charged particles array, using the number of particles passed in.
@@ -107,8 +105,9 @@ public class CalculateCharged implements ICalculate {
     }
 
     /**
-     * 
+     * @see ICalculate#MoveParticles(particlesim.IParticle[]) 
      * @param Particles
+     * @return
      */
     public IParticle[] MoveParticles(IParticle[] Particles) {
         // Used to adjust the rate of particle movement.

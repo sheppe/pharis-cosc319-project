@@ -25,11 +25,16 @@ import javax.swing.DefaultListModel;
 
 /**
  * The application's main frame.
+ * @author Sheppe
  */
 public class ParticleSimView extends FrameView {
     // Used for running the calculations and drawing routines in a background thread.
     DrawParticles draw;
 
+    /**
+     *
+     * @param app
+     */
     public ParticleSimView(SingleFrameApplication app) {
         super(app);
 
@@ -94,6 +99,9 @@ public class ParticleSimView extends FrameView {
         PopulateParticleCombo();
     }
 
+    /**
+     *
+     */
     @Action
     public void showAboutBox() {
         if (aboutBox == null) {
@@ -386,6 +394,11 @@ public class ParticleSimView extends FrameView {
 
     private JDialog aboutBox;
 
+    /**
+     * Parses through the classes in the project and populates the particles
+     * combobox with the name of each class that implements the IParticle
+     * interface.
+     */
     private void PopulateParticleCombo()
     {
         // Populate the combo box with all of the classes that exist, which implement the IParticle interface.
@@ -402,6 +415,9 @@ public class ParticleSimView extends FrameView {
 
     }
 
+    /**
+     * Executes when the user selects an item in the particles combobox.
+     */
     @Action
     public void ParticleTypeSelected() {
         String sSelItem = this.jcbPType.getSelectedItem().toString();
@@ -429,6 +445,12 @@ public class ParticleSimView extends FrameView {
         }
     }
 
+    /**
+     * Creates and initialized an array of particles based on the user's
+     * selections and entries. After initializing the array, it creates a
+     * background thread and execute the calculation routine associated with
+     * the user's selections.
+     */
     private void DoRun()
     {
         // An array of particles to pass between this and that.
@@ -476,6 +498,9 @@ public class ParticleSimView extends FrameView {
         }
     }
 
+    /**
+     * Toggles the running state of particle calculations and displays.
+     */
     private void ToggleRunStop()
     {
         if(this.jbRun.getText().equals("Run"))

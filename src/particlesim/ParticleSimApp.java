@@ -8,7 +8,8 @@ import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
 /**
- * The main class of the application.
+ * The main class of the application. Handles loading up the ParticleSimView form.
+ * @author Sheppe
  */
 public class ParticleSimApp extends SingleFrameApplication {
 

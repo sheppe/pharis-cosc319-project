@@ -6,6 +6,10 @@ package particlesim;
 
 import org.jdesktop.application.Action;
 
+/**
+ * A simple about box.
+ * @author Sheppe
+ */
 public class ParticleSimAboutBox extends javax.swing.JDialog {
 
     public ParticleSimAboutBox(java.awt.Frame parent) {

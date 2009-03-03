@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package particlesim;
 
 /**
- *
+ * An implementation of the Particle interface for a simple charged particle.
  * @author Sheppe
  */
 public class ChargedParticle implements IParticle {
@@ -20,6 +15,9 @@ public class ChargedParticle implements IParticle {
      protected float y;
      protected float z;
 
+    /**
+     * @see IParticle#()
+     */
     public ChargedParticle()
     {
     	// Initialize the variables that persist property values.
@@ -55,7 +53,7 @@ public class ChargedParticle implements IParticle {
         this.chrs[2].setBehaviourModifier(0);
     }
      /**
-     *
+     * @see IParticle#getCharacteristic()
      * @return
      */
     public Characteristic[] getCharacteristic() {
@@ -63,7 +61,7 @@ public class ChargedParticle implements IParticle {
     }
 
     /**
-     *
+     * @see IParticle#setCharacteristic(particlesim.Characteristic[])
      * @param newValue
      */
     public void setCharacteristic(Characteristic[] newValue) {
@@ -71,7 +69,7 @@ public class ChargedParticle implements IParticle {
     }
 
     /**
-     *
+     * @see IParticle#getMedium()
      * @return
      */
     public Medium getMedium() {
@@ -79,7 +77,7 @@ public class ChargedParticle implements IParticle {
     }
 
     /**
-     *
+     * @see IParticle#setMedium(particlesim.Medium)
      * @param newValue
      */
     public void setMedium(Medium newValue) {
@@ -87,7 +85,7 @@ public class ChargedParticle implements IParticle {
     }
 
     /**
-     *
+     * @see IParticle#getX()
      * @return
      */
     public float getX() {
@@ -95,7 +93,7 @@ public class ChargedParticle implements IParticle {
     }
 
     /**
-     *
+     * @see IParticle#setX(float)
      * @param newValue
      */
     public void setX(float newValue) {
@@ -103,7 +101,7 @@ public class ChargedParticle implements IParticle {
     }
 
     /**
-     *
+     * @see IParticle#getY()
      * @return
      */
     public float getY() {
@@ -111,7 +109,7 @@ public class ChargedParticle implements IParticle {
     }
 
     /**
-     *
+     * @see IParticle#setY(float)
      * @param newValue
      */
     public void setY(float newValue) {
@@ -119,7 +117,7 @@ public class ChargedParticle implements IParticle {
     }
 
     /**
-     *
+     * @see IParticle#getZ()
      * @return
      */
     public float getZ() {
@@ -127,7 +125,7 @@ public class ChargedParticle implements IParticle {
     }
 
     /**
-     *
+     * @see IParticle#setZ(float)
      * @param newValue
      */
     public void setZ(float newValue) {

@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package particlesim;
 
 /**
- *
+ * The medium in which a particle exists.
  * @author Sheppe
  */
 public class Medium implements IMedium {
@@ -19,7 +15,7 @@ public class Medium implements IMedium {
 	float vscty;
 
 	/**
-	 *
+	 * @see IMedium#()
 	 */
 	public Medium() {
 		// Initialize the variables that persist property values.
@@ -29,7 +25,7 @@ public class Medium implements IMedium {
 	}
 
 	/**
-     *
+     * @see IMedium#getGravity()
      * @return
      */
 	public float getGravity() {
@@ -37,7 +33,7 @@ public class Medium implements IMedium {
 	}
 
     /**
-     * 
+     * @see IMedium#getName()
      * @return
      */
     public String getName() {
@@ -45,7 +41,7 @@ public class Medium implements IMedium {
 	}
 
     /**
-     *
+     * @see IMedium#getViscosity()
      * @return
      */
 	public float getViscosity() {
@@ -53,7 +49,7 @@ public class Medium implements IMedium {
 	}
 
     /**
-     *
+     * @see IMedium#setGravity(float)
      * @param newValue
      */
 	public void setGravity(float newValue) {
@@ -61,7 +57,7 @@ public class Medium implements IMedium {
 	}
 
 	/**
-     *
+     * @see IMedium#setName(java.lang.String)
      * @param newValue
      */
 	public void setName(String newValue) {
@@ -69,7 +65,7 @@ public class Medium implements IMedium {
 	}
 
 	/**
-     *
+     * @see IMedium#setViscosity(float)
      * @param newValue
      */
 	public void setViscosity(float newValue) {
