@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package particlesim;
 
 import com.sun.opengl.util.Animator;
@@ -21,14 +16,26 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- *
+ * This class handles drawing an array of IParticle onto the GL panel. It
+ * extends the SwingWorker class in order to do all of the work in a seperate
+ * thread; this prevent the interface from locking up.
  * @author Sheppe
  */
 public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEventListener {
     // Publicly accessible variables. Used for passing particle arrays and graphical
     // elements to this class for updating.
+    
+    /**
+     * An array of particles to draw/run calculations on.
+     */
     public IParticle[] parts;
+    /**
+     * A GLCanvas to draw the particles on.
+     */
     public javax.media.opengl.GLCanvas GraphicsPanel;
+    /**
+     * A JLabel for tracking FPS on.
+     */
     public javax.swing.JLabel FpsLabel;
 
     private CalculateCharged cc = new CalculateCharged();
@@ -42,6 +49,10 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
         this.GraphicsPanel.addGLEventListener(this);
     }
 
+    /**
+     * Draws each particle in the class level parts array.
+     * @param gl
+     */
     private void drawParticle(GL gl) {
         // Call the functions to calculate particle forces and movements.
         GLUT glut = new GLUT();
@@ -88,6 +99,11 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
         }
     }
 
+    /**
+     * This function executes the instructions within in a new thread.
+     * @return
+     * @throws java.lang.Exception
+     */
     @Override
     protected Void doInBackground() throws Exception {
         animator.start();
@@ -121,14 +137,26 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
         return null;
     }
 
+    /**
+     * Called after each iteration of doInBackground.
+     * @param g
+     */
     protected void process(Graphics g)
     {}
 
+    /**
+     * Implementation of interface method.
+     * @param drawable
+     */
     public void init(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();
         gl.glClearColor(0.0f, 0.1f, 0.1f, 0.0f);
     }
 
+    /**
+     * Implementation of interface method.
+     * @param drawable
+     */
     public void display(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
@@ -136,6 +164,14 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
         gl.glFlush();
     }
 
+    /**
+     * Implementation of interface method.
+     * @param drawable
+     * @param x
+     * @param y
+     * @param w
+     * @param h
+     */
     public void reshape(GLAutoDrawable drawable, int x, int y, int w, int h) {
         GL gl = drawable.getGL();
         gl.glMatrixMode(GL.GL_PROJECTION);
@@ -155,6 +191,12 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
 
     }
 
+    /**
+     * Implementation of interface method.
+     * @param drawable
+     * @param modeChanged
+     * @param deviceChanged
+     */
     public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

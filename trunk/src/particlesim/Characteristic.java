@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package particlesim;
 
 /**
- *
+ * Implementation of the ICharacteristic interface.
  * @author Sheppe
  */
 public class Characteristic implements ICharacteristic {
@@ -18,7 +13,7 @@ public class Characteristic implements ICharacteristic {
 	float bm;
 
 	/**
-	 *
+	 * @see Characteristic#Characteristic()
 	 */
 	public Characteristic() {
 		// Initialize the variables that persist property values.
@@ -27,32 +22,33 @@ public class Characteristic implements ICharacteristic {
 	}
 
     /**
-     * 
-     * @return
+     * @see Characteristic#getCharacteristicType()
+     * @return CharacteristicType
      */
     public CharacteristicType getCharacteristicType() {
 		return ct;
 	}
 
     /**
-     *
-     * @param newValue
+     * @see Characteristic#setCharacteristicType(particlesim.CharacteristicType)
+     * @param newValue CharacteristicType
      */
 	public void setCharacteristicType(CharacteristicType newValue) {
 		ct = newValue;
 	}
 
     /**
-     * 
-     * @return
+     * @see Characteristic#getBehaviourModifier()
+     * @return A float that represents the quantitative value of a
+     * characteristic behaviour.
      */
     public float getBehaviourModifier() {
 		return bm;
 	}
 
     /**
-     *
-     * @param newValue
+     * @see Characteristic#setBehaviourModifier(float)
+     * @param newValue float
      */
 	public void setBehaviourModifier(float newValue) {
 		bm = newValue;

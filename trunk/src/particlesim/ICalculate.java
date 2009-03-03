@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package particlesim;
 
 /**
- *
+ * Interface for calculating particle characteristic values, and for calculating
+ * particle movements based on these values.
  * @author Sheppe
  */
 public interface ICalculate {
@@ -15,7 +11,7 @@ public interface ICalculate {
 	// retrieve the updated values.
 
     /**
-     * Calculates particle behaviour based on particle characteristics.
+     * Calculates instantaneous particle movements based on particle characteristics.
      * @param Particles The collection of particles to perform calculations on.
      * @return
      */
@@ -28,12 +24,15 @@ public interface ICalculate {
      * @param MaxX The X boundary of the particles' container.
      * @param MaxY The Y boundary of the particles' container.
      * @param MaxZ The Z boundary of the particles' container.
+     * @return
      */
     public IParticle[] InitializeParticles(int NumParticles, int MaxX, int MaxY, int MaxZ);
 
     /**
+     * Adjusts the particles' axis values based on existing values.
      * Call this method AFTER calling CalculateIteration.
      * @param Particles The particles to move based on their characteristic values.
+     * @return
      */
     public IParticle[] MoveParticles(IParticle[] Particles);
 }
