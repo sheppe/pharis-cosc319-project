@@ -1,20 +1,21 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package particlesim;
 
+
 /**
- *
  * @author Yuehan
  */
 
+
 public class Formula {
-
     private Matrix tensor_0,  rotation,  rotation_invers,  field, tensor;
-
-    public Formula(double degree, double aPara, double aVerti) {
+/**
+ * @param degree---the rotation angle of particle
+ * @param PAPParaller---the polarizability alone principle axis parallely
+ * @param PAPParaller---the polarizability alone principle axis vertically
+ */
+    public Formula(double degree, double PAPParalle, double PAPVertical) {
 
         //create rotation matrix R and its invers
         degree = Math.cos((degree / 180) * Math.PI);
@@ -26,7 +27,7 @@ public class Formula {
         System.out.println(Math.sin(degree));
 
         //create matrix for tensor 0 (alpha 0)
-        double[][] a_0 = {{aPara, 0}, {0, aVerti}};
+        double[][] a_0 = {{PAPParalle, 0}, {0, PAPVertical}};
         Matrix tensor_0 = new Matrix(a_0);
 
         //using above 3 matrix to calculate matrix tensor (alpha) (this is formular 2)
@@ -46,9 +47,9 @@ public class Formula {
 
     }
 
-    // calculate Matrix P (this is formular 3)
+    // calculate Matrix P (this is formular 1)
     public Matrix solv_P() {
-        Matrix P = tensor.multiply(field);
+        Matrix P = tensor.s_multiply(field);
         return P;
     }
 
@@ -57,9 +58,9 @@ public class Formula {
         return tensor;
     }
 
-    // formular 3
+    // formular 3, this methods does the same thing as method matrix solv_P does.
     public Matrix solv_Phard() {
-        Matrix P = rotation_invers.multiply(tensor_0).multiply(rotation).multiply(field);
+        Matrix P = rotation_invers.multiply(tensor_0).multiply(rotation).s_multiply(field);
         return P;
     }
 
