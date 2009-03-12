@@ -131,6 +131,8 @@ public class ParticleSimView extends FrameView {
         jlChars = new javax.swing.JList();
         jbRun = new javax.swing.JButton();
         glGraphics = new javax.media.opengl.GLCanvas();
+        jLabel4 = new javax.swing.JLabel();
+        jtElecFld = new javax.swing.JTextField();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jmRun = new javax.swing.JCheckBoxMenuItem();
@@ -195,6 +197,12 @@ public class ParticleSimView extends FrameView {
 
         glGraphics.setName("glGraphics"); // NOI18N
 
+        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
+        jLabel4.setName("jLabel4"); // NOI18N
+
+        jtElecFld.setText(resourceMap.getString("jtElecFld.text")); // NOI18N
+        jtElecFld.setName("jtElecFld"); // NOI18N
+
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -202,26 +210,32 @@ public class ParticleSimView extends FrameView {
             .add(mainPanelLayout.createSequentialGroup()
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(mainPanelLayout.createSequentialGroup()
-                        .add(41, 41, 41)
-                        .add(jbRun))
-                    .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .add(jLabel2))
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jtNumP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .add(jLabel1))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .add(jcbPType, 0, 123, Short.MAX_VALUE))
+                        .add(jcbPType, 0, 194, Short.MAX_VALUE))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .add(jLabel3))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jtNumP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jLabel4))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jtElecFld, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .add(71, 71, 71)
+                        .add(jbRun)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(glGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 439, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
@@ -230,9 +244,13 @@ public class ParticleSimView extends FrameView {
             .add(mainPanelLayout.createSequentialGroup()
                 .add(11, 11, 11)
                 .add(jLabel2)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jtNumP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jLabel4)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jtElecFld, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 62, Short.MAX_VALUE)
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jcbPType, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -240,10 +258,10 @@ public class ParticleSimView extends FrameView {
                 .add(jLabel3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(60, 60, 60)
+                .add(18, 18, 18)
                 .add(jbRun)
-                .addContainerGap())
-            .add(glGraphics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                .add(53, 53, 53))
+            .add(glGraphics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -308,18 +326,18 @@ public class ParticleSimView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
             .add(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(statusMessageLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 562, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 633, Short.MAX_VALUE)
                 .add(statusAnimationLabel)
                 .addContainerGap())
             .add(statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(statusPanelLayout.createSequentialGroup()
-                    .add(0, 278, Short.MAX_VALUE)
+                    .add(0, 315, Short.MAX_VALUE)
                     .add(jlFps)
-                    .add(0, 279, Short.MAX_VALUE)))
+                    .add(0, 316, Short.MAX_VALUE)))
         );
         statusPanelLayout.setVerticalGroup(
             statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -369,6 +387,7 @@ public class ParticleSimView extends FrameView {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbRun;
@@ -378,6 +397,7 @@ public class ParticleSimView extends FrameView {
     private javax.swing.JMenuItem jmLoad;
     private javax.swing.JCheckBoxMenuItem jmRun;
     private javax.swing.JMenuItem jmSave;
+    private javax.swing.JTextField jtElecFld;
     private javax.swing.JTextField jtNumP;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
