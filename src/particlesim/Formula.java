@@ -13,11 +13,11 @@ public class Formula {
     private double differDeg, degByTime ;
 
     /**
-     * @param rotaMobility--- rotational mobility
-     * @param PAPParaller---the polarizability alone principle axis parallely
-     * @param PAPParaller---the polarizability alone principle axis vertically
+     * @param rotaMobility rotational mobility
+     * @param PAPParalle the polarizability alone principle axis parallely
+     * @param PAPVertical the polarizability alone principle axis vertically
      * @param fieldNull
-     * @param omege
+     * @param omega
      */
     public Formula(double rotaMobility, double PAPParalle, double PAPVertical, double fieldNull, double omega) {
 
@@ -77,13 +77,13 @@ public class Formula {
     }
 
 
-    // This is formular 2, calculation part did in the constructor
+    // This is formula 2, calculation part did in the constructor
     public Matrix solv_tensor() {
         return tensor;
     }
 
     
-    // formular 3, this methods does the same thing as method matrix solv_P does.
+    // formula 3, this methods does the same thing as method matrix solv_P does.
     public Matrix solv_Phard() {
         Matrix P = rotation_invers.multiply(tensor_0).multiply(rotation).s_multiply(field);
         return P;
