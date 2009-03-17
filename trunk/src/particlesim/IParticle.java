@@ -62,6 +62,13 @@ public interface IParticle {
      * @param newValue
      */
 	void setZ(float newValue);
+
+    /**
+     * Returns the package and class name (ie: particlesim.CalculateCharged) of
+     * the ICalculate implementation to use.
+     * @return
+     */
+    String getCalcName();
 	// End Properties
 
 	// Begin Functions

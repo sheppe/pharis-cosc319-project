@@ -132,4 +132,12 @@ public class ChargedParticle implements IParticle {
         this.z = newValue;
     }
 
+    /**
+     * @see IParticle#getCalcName() 
+     * @return
+     */
+    public String getCalcName() {
+        return "particlesim.CalculateCharged";
+    }
+
 }
