@@ -31,6 +31,12 @@ public class ParticleSimView extends FrameView {
     // Used for running the calculations and drawing routines in a background thread.
     DrawParticles draw;
 
+    // For persisting the user selected particle type.
+    String sSelectedParticle = "";
+
+    // For dynamically loading particle classes.
+    ClassLoader loader = this.getClass().getClassLoader();
+    
     /**
      *
      * @param app
@@ -431,37 +437,50 @@ public class ParticleSimView extends FrameView {
         finder.findClasses (foundClasses, filter);
 
         for (ClassInfo classInfo : foundClasses)
+        {
             this.jcbPType.addItem(classInfo.getClassName()); //.substring(classInfo.getClassName().lastIndexOf(".")+1));
+        }
 
     }
 
     /**
      * Executes when the user selects an item in the particles combobox.
+     * @throws InstantiationException
+     * @throws IllegalAccessException
      */
     @Action
-    public void ParticleTypeSelected() {
-        String sSelItem = this.jcbPType.getSelectedItem().toString();
-
+    public void ParticleTypeSelected() throws InstantiationException, IllegalAccessException {
+        // Persist the selected value to the sSelectedParticle class variable.
+        sSelectedParticle = this.jcbPType.getSelectedItem().toString();
+        
         // Load and initialize the selected particle type.
         Class p = null;
         try {
-            p = Class.forName(sSelItem);
+            p = Class.forName(sSelectedParticle);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        //TODO Make the following better. The Class.forName function above may be useful....
-        // Determine what particle type was selected and load the corresponding class.
-        if(p.toString().equals(ChargedParticle.class.toString()))
-        {
-            // Load the ChargedParticle class and fill the characteristics
+        IParticle ip = null;
+        Class cl = null;
+        Object ob = null;
+        try {
+            // Load the selected particle class and fill the characteristics
             // into the characteristics listbox.
-            ChargedParticle cp = new ChargedParticle();
-            DefaultListModel list = new DefaultListModel();
-            this.jlChars.setModel(list);
+            cl = loader.loadClass(sSelectedParticle);
+            ob = cl.newInstance();
+            ip = ((IParticle)ob);
 
-            for(int i=0;i<cp.getCharacteristic().length;i++)
-                list.addElement(cp.getCharacteristic()[i].getCharacteristicType().getName());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        DefaultListModel list = new DefaultListModel();
+        this.jlChars.setModel(list);
+
+        for(int i=0;i<ip.getCharacteristic().length;i++)
+        {
+            list.addElement(ip.getCharacteristic()[i].getCharacteristicType().getName());
         }
     }
 
@@ -471,50 +490,52 @@ public class ParticleSimView extends FrameView {
      * background thread and execute the calculation routine associated with
      * the user's selections.
      */
-    private void DoRun()
+    private void DoRun() throws InstantiationException, IllegalAccessException
     {
         // An array of particles to pass between this and that.
         particlesim.IParticle[] parts;
 
         // Instantiate the Calculate class for the selected particle type
         // and have it create the number particles indicated by the user.
-        String sSelItem = this.jcbPType.getSelectedItem().toString();
-
-        // Load and initialize the selected particle type.
-        Class p = null;
+        IParticle ip = null;
+        ICalculate ic = null;
+        Class cl = null;
+        Object ob = null;
         try {
-            p = Class.forName(sSelItem);
+            // Load the selected particle class and fill the characteristics
+            // into the characteristics listbox.
+            cl = loader.loadClass(sSelectedParticle);
+            ob = cl.newInstance();
+            ip = ((IParticle)ob);
+            cl = loader.loadClass(ip.getCalcName());
+            ob = cl.newInstance();
+            ic = ((ICalculate)ob);
+            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        //TODO Make the following better. The Class.forName function above may be useful....
-        // Determine what particle type was selected and load the corresponding class.
-        if(p.toString().equals(ChargedParticle.class.toString()))
-        {
-            CalculateCharged cc = new CalculateCharged();
-            
-            // Initialize the particle array.
-            parts = cc.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.glGraphics.getWidth(), this.glGraphics.getHeight(), 0);
 
-            // In a new thread, launch the routine that handles the drawing and calculating of forces and positions.
-            draw = new DrawParticles(this.glGraphics, parts);
-            draw.FpsLabel = this.jlFps;
-            
-            try {
-                /* Uncomment below line to debug the DrawParticles class variable.
-                 * This is neccessary because threads outside of this one (the EDT)
-                 * cannot be debugged. Be sure to comment out the draw.execute();
-                 * line if you do this. */
-                //draw.doInBackground();
+        // Initialize the particle array.
+        parts = ic.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.glGraphics.getWidth(), this.glGraphics.getHeight(), 0);
 
-                // Start the draw/calculation routine in a separate thread. It is
-                // done this way because the intense calculations lock up the
-                // interface otherwise.
-                draw.execute();
-            } catch (Exception ex) {
-                Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        // In a new thread, launch the routine that handles the drawing and calculating of forces and positions.
+        draw = new DrawParticles(this.glGraphics, parts);
+        draw.FpsLabel = this.jlFps;
+
+        try {
+            /* Uncomment below line to debug the DrawParticles class variable.
+             * This is neccessary because threads outside of this one (the EDT)
+             * cannot be debugged. Be sure to comment out the draw.execute();
+             * line if you do this. */
+            //draw.doInBackground();
+
+            // Start the draw/calculation routine in a separate thread. It is
+            // done this way because the intense calculations lock up the
+            // interface otherwise.
+            draw.execute();
+        } catch (Exception ex) {
+            Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -526,7 +547,13 @@ public class ParticleSimView extends FrameView {
         if(this.jbRun.getText().equals("Run"))
         {
             this.jbRun.setText("Stop");
-            this.DoRun();
+            try {
+                this.DoRun();
+            } catch (InstantiationException ex) {
+                Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else
         {
