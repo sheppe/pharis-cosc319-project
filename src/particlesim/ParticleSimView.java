@@ -4,14 +4,13 @@
 
 package particlesim;
 
-import java.lang.reflect.InvocationTargetException;
+import com.sun.xml.internal.bind.v2.model.core.ClassInfo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
-import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;

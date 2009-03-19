@@ -35,7 +35,7 @@ public class ChargedParticle implements IParticle {
         this.chrs[0].ct = new CharacteristicType();
         this.chrs[0].ct.setName("Charge");
         this.chrs[0].ct.setDescription("The positive or negative charge value of the particle.");
-        // Default to nagative. This can be modified when the array of particles is initialized.
+        // Default to negative. This can be modified when the array of particles is initialized.
         this.chrs[0].setBehaviourModifier(0);
 
         this.chrs[1] = new Characteristic();
