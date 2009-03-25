@@ -4,7 +4,7 @@
 
 package particlesim;
 
-import com.sun.xml.internal.bind.v2.model.core.ClassInfo;
+//import com.sun.xml.internal.bind.v2.model.core.ClassInfo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jdesktop.application.Action;
@@ -138,6 +138,7 @@ public class ParticleSimView extends FrameView {
         glGraphics = new javax.media.opengl.GLCanvas();
         jLabel4 = new javax.swing.JLabel();
         jtElecFld = new javax.swing.JTextField();
+        jcDoLog = new javax.swing.JCheckBox();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jmRun = new javax.swing.JCheckBoxMenuItem();
@@ -208,6 +209,10 @@ public class ParticleSimView extends FrameView {
         jtElecFld.setText(resourceMap.getString("jtElecFld.text")); // NOI18N
         jtElecFld.setName("jtElecFld"); // NOI18N
 
+        jcDoLog.setText(resourceMap.getString("jcDoLog.text")); // NOI18N
+        jcDoLog.setToolTipText(resourceMap.getString("jcDoLog.toolTipText")); // NOI18N
+        jcDoLog.setName("jcDoLog"); // NOI18N
+
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -228,9 +233,6 @@ public class ParticleSimView extends FrameView {
                         .add(jLabel3))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
                         .add(jtNumP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
@@ -240,7 +242,12 @@ public class ParticleSimView extends FrameView {
                         .add(jtElecFld, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
                     .add(mainPanelLayout.createSequentialGroup()
                         .add(71, 71, 71)
-                        .add(jbRun)))
+                        .add(jbRun))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jcDoLog)
+                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(glGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 439, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
@@ -263,11 +270,15 @@ public class ParticleSimView extends FrameView {
                 .add(jLabel3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
+                .add(30, 30, 30)
+                .add(jcDoLog)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jbRun)
-                .add(53, 53, 53))
+                .addContainerGap())
             .add(glGraphics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
         );
+
+        jcDoLog.getAccessibleContext().setAccessibleName(resourceMap.getString("jCheckBox1.AccessibleContext.accessibleName")); // NOI18N
 
         menuBar.setName("menuBar"); // NOI18N
 
@@ -396,6 +407,7 @@ public class ParticleSimView extends FrameView {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbRun;
+    private javax.swing.JCheckBox jcDoLog;
     private javax.swing.JComboBox jcbPType;
     private javax.swing.JList jlChars;
     public javax.swing.JLabel jlFps;
@@ -519,7 +531,7 @@ public class ParticleSimView extends FrameView {
         parts = ic.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.glGraphics.getWidth(), this.glGraphics.getHeight(), 0);
 
         // In a new thread, launch the routine that handles the drawing and calculating of forces and positions.
-        draw = new DrawParticles(this.glGraphics, parts);
+        draw = new DrawParticles(this.glGraphics, parts, this.jcDoLog.isSelected());
         draw.FpsLabel = this.jlFps;
 
         try {
