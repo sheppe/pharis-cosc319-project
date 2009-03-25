@@ -41,11 +41,25 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
     private CalculateCharged cc = new CalculateCharged();
     final Animator animator = new Animator(this.GraphicsPanel);
 
-    DrawParticles(javax.media.opengl.GLCanvas GraphicsPanel, IParticle[] Particles)
+    // Used for logging particle data.
+    private ParticleLogger log = new ParticleLogger();
+    // Use to indicate whether or not to log the data.
+    private boolean doLog = false;
+
+    /**
+     * Constructs the worker thread that handles running the calculations and
+     * logging the data in a separate thread.
+     * @param GraphicsPanel An instance of a GLCanvas to draw the particles on.
+     * @param Particles The array of particles to draw and run calculations on.
+     * @param DoLog Indicates whether to log the data or not.
+     */
+    DrawParticles(javax.media.opengl.GLCanvas GraphicsPanel, IParticle[] Particles, boolean DoLog)
     {
         this.GraphicsPanel = GraphicsPanel;
         this.parts = Particles;
+        this.doLog = DoLog;
 
+        // Set this class up for drawing to the canvas.
         this.GraphicsPanel.addGLEventListener(this);
     }
 
@@ -57,7 +71,15 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
         // Call the functions to calculate particle forces and movements.
         GLUT glut = new GLUT();
 
+        /* The following line is what causes the calculations to take place. */
         parts = cc.MoveParticles(cc.CalculateIteration(parts));
+
+        // Log the data for this iteration.
+        if(this.doLog)
+        {
+            // TODO Replace the 0 in the TimeStep parameter with an actual value, once we have one.
+            this.log.Log(0, parts);
+        }
 
         float no_mat[] = { 0.0f, 0.0f, 0.0f, 1.0f };
         float mat_ambient[] = { 0.7f, 0.7f, 0.7f, 1.0f };
