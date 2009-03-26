@@ -22,6 +22,9 @@ public class ElecFieldParticle implements IParticle {
      protected float polarizabilityParallel;
      protected float polarizabilityPerpendicular;
      protected Matrix polarizabilityMatrix;
+     protected float mobilityParallel;
+     protected float mobilityPerpendicular;
+     protected Matrix mobilityMatrix;
      protected float impressedFieldX;
      protected float impressedFieldY;
      protected float secondOrderFieldX_Center;
@@ -43,6 +46,10 @@ public class ElecFieldParticle implements IParticle {
      protected float unitVector_XNegOffset;
      protected float unitVector_YPosOffset;
      protected float unitVector_YNegOffset;
+     protected float secondOrderFieldX_Previous;
+     protected float secondOrderFieldY_Previous;
+     protected float deltaSecondOrderFieldX;
+     protected float deltaSecondOrderFieldY;
 
      public ElecFieldParticle() {
 
@@ -229,6 +236,31 @@ public class ElecFieldParticle implements IParticle {
         return this.polarizabilityMatrix;
     }
 
+    //Gets the parallel polarizability of the particle
+    public float getMobilityParallel() {
+        return this.polarizabilityParallel;
+    }
+
+    //Sets the parallel polarizability of the particle to newValue
+    public void setMobilityParallel(float newValue) {
+        this.polarizabilityParallel = newValue;
+    }
+
+    //Gets the perpendicular polarizability of the particle
+    public float getMobilityPerpendicular() {
+        return this.polarizabilityPerpendicular;
+    }
+
+    //Sets the perpendicular polarizability of the particle to newValue
+    public void setMobilityPerpendicular(float newValue) {
+        this.polarizabilityPerpendicular = newValue;
+    }
+
+    //Gets the polarizabilty matrix of the particle
+    public Matrix getMobiltyMatrix() {
+        return this.polarizabilityMatrix;
+    }
+
     public float getUnitVector_Center() {
         return this.unitVector_Center;
     }
@@ -270,10 +302,10 @@ public class ElecFieldParticle implements IParticle {
     }
 
    //Method calculates the polarizability matrix for a specific particle, used for calculating dipole moments
-    public void calculatePolarizabilityMatrix(ElecFieldParticle Particle) {
+    public void calculatePolarizabilityMatrix() {
 
         //The current orientation of the particle
-        float degree = Particle.getOrientation();
+        float degree = this.getOrientation();
 
         //Defines the rotation matrix used to calculate polarizability
         double[][] rotationArray = {{Math.cos(degree), Math.sin(degree)}, {(-Math.sin(degree)), Math.cos(degree)}};
@@ -284,7 +316,7 @@ public class ElecFieldParticle implements IParticle {
         Matrix inverseRotationMatrix = new Matrix(inverseRotationArray);
 
         //Defines a matrix made up of the polarizabilities of the particle, called the tensor identity matrix
-        double[][] tensorIdentityArray = {{Particle.getPolarizabilityParallel(), 0}, {0, Particle.getPolarizabilityPerpendicular()}};
+        double[][] tensorIdentityArray = {{this.getPolarizabilityParallel(), 0}, {0, this.getPolarizabilityPerpendicular()}};
         Matrix tensorIdentityMatrix = new Matrix(tensorIdentityArray);
 
         //Calculates the polarizability matrix by multiplying the above matrices
@@ -293,23 +325,16 @@ public class ElecFieldParticle implements IParticle {
         }
     
     //This method calculates the dipole moment for all particles
-    public void calculateDipoleMoments(ElecFieldParticle[] Particles){
-        
-         // Convert the array to a list to ease parsing it.
-        List<ElecFieldParticle> lParticles = Arrays.asList(Particles);
-        
-        //For each particle in lParticles, calculate the particle's dipole moment
-        for(ElecFieldParticle part : lParticles) {
-            
+    public void calculateDipoleMoments(){
+
             double[][] elecFieldArray = {{this.impressedFieldX, this.impressedFieldY}};
             Matrix elecFieldMatrix = new Matrix(elecFieldArray);
             
             Matrix dipoleMomentMatrix = (this.polarizabilityMatrix).s_multiply(elecFieldMatrix);
             
-            part.getCharacteristic()[0].setBehaviourModifier((float)dipoleMomentMatrix.getValue(0, 0));
-            part.getCharacteristic()[1].setBehaviourModifier((float)dipoleMomentMatrix.getValue(1, 0));
+            this.getCharacteristic()[0].setBehaviourModifier((float)dipoleMomentMatrix.getValue(0, 0));
+            this.getCharacteristic()[1].setBehaviourModifier((float)dipoleMomentMatrix.getValue(1, 0));
         }
-    }
 
     public void calculateUnitVectors(ElecFieldParticle p1, ElecFieldParticle p2){
         float unitVectorNominator_Center = ((p1.getX()) - (p2.getX())) + (p1.getY() - p2.getY());
@@ -329,40 +354,100 @@ public class ElecFieldParticle implements IParticle {
         this.setUnitVector_YNegOffset(unitVectorNominator_YNegOffset / unitVectorDenominator_YNegOffset);
     }
 
-public void calculateSecondOrderFields(ElecFieldParticle[] Particles) {
+public void calculateSecondOrderFields(ElecFieldParticle Particle) {
 
-    // Convert the array to a list to ease parsing it.
-        List<ElecFieldParticle> lParticles = Arrays.asList(Particles);
-
-        for(ElecFieldParticle p1 : lParticles) {
-            for(ElecFieldParticle p2 : lParticles) {
-                if(p1.equals(p2))
-                    continue;
-                else{
-                    this.calculateUnitVectors(this, p1);
-
-                    this.secondOrderFieldX_Center += (float)(((this.getUnitVector_Center() * 3) * (this.getCharacteristic()[0].getBehaviourModifier() * this.getUnitVector_Center()) - this.getCharacteristic()[0].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow(p2.getX() - p1.getX(), 2)) + (Math.pow(p2.getY() - p1.getY(), 2))), 3));
-                    this.secondOrderFieldX_XPosOffset += (float)(((this.getUnitVector_XPosOffset() * 3) * (this.getCharacteristic()[0].getBehaviourModifier() * this.getUnitVector_XPosOffset()) - this.getCharacteristic()[0].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow((p2.getX() + 1) - p1.getX(), 2)) + (Math.pow(p2.getY() - p1.getY(), 2))), 3));
-                    this.secondOrderFieldX_XNegOffset += (float)(((this.getUnitVector_XNegOffset() * 3) * (this.getCharacteristic()[0].getBehaviourModifier() * this.getUnitVector_XNegOffset()) - this.getCharacteristic()[0].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow((p2.getX() - 1) - p1.getX(), 2)) + (Math.pow(p2.getY() - p1.getY(), 2))), 3));
-                    this.secondOrderFieldX_YPosOffset += (float)(((this.getUnitVector_YPosOffset() * 3) * (this.getCharacteristic()[0].getBehaviourModifier() * this.getUnitVector_YPosOffset()) - this.getCharacteristic()[0].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow(p2.getX() - p1.getX(), 2)) + (Math.pow((p2.getY() + 1) - p1.getY(), 2))), 3));
-                    this.secondOrderFieldX_YNegOffset += (float)(((this.getUnitVector_YNegOffset() * 3) * (this.getCharacteristic()[0].getBehaviourModifier() * this.getUnitVector_YNegOffset()) - this.getCharacteristic()[0].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow(p2.getX() - p1.getX(), 2)) + (Math.pow((p2.getY() - 1) - p1.getY(), 2))), 3));
+                    this.secondOrderFieldX_Center += (float)(((this.getUnitVector_Center() * 3) * (this.getCharacteristic()[0].getBehaviourModifier() * this.getUnitVector_Center()) - this.getCharacteristic()[0].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow(Particle.getX() - this.getX(), 2)) + (Math.pow(Particle.getY() - this.getY(), 2))), 3));
+                    this.secondOrderFieldX_XPosOffset += (float)(((this.getUnitVector_XPosOffset() * 3) * (this.getCharacteristic()[0].getBehaviourModifier() * this.getUnitVector_XPosOffset()) - this.getCharacteristic()[0].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow((Particle.getX() + 1) - this.getX(), 2)) + (Math.pow(Particle.getY() - this.getY(), 2))), 3));
+                    this.secondOrderFieldX_XNegOffset += (float)(((this.getUnitVector_XNegOffset() * 3) * (this.getCharacteristic()[0].getBehaviourModifier() * this.getUnitVector_XNegOffset()) - this.getCharacteristic()[0].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow((Particle.getX() - 1) - this.getX(), 2)) + (Math.pow(Particle.getY() - this.getY(), 2))), 3));
+                    this.secondOrderFieldX_YPosOffset += (float)(((this.getUnitVector_YPosOffset() * 3) * (this.getCharacteristic()[0].getBehaviourModifier() * this.getUnitVector_YPosOffset()) - this.getCharacteristic()[0].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow(Particle.getX() - this.getX(), 2)) + (Math.pow((Particle.getY() + 1) - this.getY(), 2))), 3));
+                    this.secondOrderFieldX_YNegOffset += (float)(((this.getUnitVector_YNegOffset() * 3) * (this.getCharacteristic()[0].getBehaviourModifier() * this.getUnitVector_YNegOffset()) - this.getCharacteristic()[0].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow(Particle.getX() - this.getX(), 2)) + (Math.pow((Particle.getY() - 1) - this.getY(), 2))), 3));
 
                     this.secondOrderFieldX_Average = (this.secondOrderFieldX_Center + this.secondOrderFieldX_XPosOffset + this.secondOrderFieldX_XNegOffset + this.secondOrderFieldX_YNegOffset + this.secondOrderFieldX_YPosOffset) / 5;
 
-                    this.secondOrderFieldY_Center += (float)(((this.getUnitVector_Center() * 3) * (this.getCharacteristic()[1].getBehaviourModifier() * this.getUnitVector_Center()) - this.getCharacteristic()[1].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow(p2.getX() - p1.getX(), 2)) + (Math.pow(p2.getY() - p1.getY(), 2))), 3));
-                    this.secondOrderFieldY_XPosOffset += (float)(((this.getUnitVector_XPosOffset() * 3) * (this.getCharacteristic()[1].getBehaviourModifier() * this.getUnitVector_XPosOffset()) - this.getCharacteristic()[1].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow((p2.getX() + 1) - p1.getX(), 2)) + (Math.pow(p2.getY() - p1.getY(), 2))), 3));
-                    this.secondOrderFieldY_XNegOffset += (float)(((this.getUnitVector_XNegOffset() * 3) * (this.getCharacteristic()[1].getBehaviourModifier() * this.getUnitVector_XNegOffset()) - this.getCharacteristic()[1].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow((p2.getX() - 1) - p1.getX(), 2)) + (Math.pow(p2.getY() - p1.getY(), 2))), 3));
-                    this.secondOrderFieldY_YPosOffset += (float)(((this.getUnitVector_YPosOffset() * 3) * (this.getCharacteristic()[1].getBehaviourModifier() * this.getUnitVector_YPosOffset()) - this.getCharacteristic()[1].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow(p2.getX() - p1.getX(), 2)) + (Math.pow((p2.getY() + 1) - p1.getY(), 2))), 3));
-                    this.secondOrderFieldY_YNegOffset += (float)(((this.getUnitVector_YNegOffset() * 3) * (this.getCharacteristic()[1].getBehaviourModifier() * this.getUnitVector_YNegOffset()) - this.getCharacteristic()[1].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow(p2.getX() - p1.getX(), 2)) + (Math.pow((p2.getY() - 1) - p1.getY(), 2))), 3));
+                    this.secondOrderFieldY_Center += (float)(((this.getUnitVector_Center() * 3) * (this.getCharacteristic()[1].getBehaviourModifier() * this.getUnitVector_Center()) - this.getCharacteristic()[1].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow(Particle.getX() - this.getX(), 2)) + (Math.pow(Particle.getY() - this.getY(), 2))), 3));
+                    this.secondOrderFieldY_XPosOffset += (float)(((this.getUnitVector_XPosOffset() * 3) * (this.getCharacteristic()[1].getBehaviourModifier() * this.getUnitVector_XPosOffset()) - this.getCharacteristic()[1].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow((Particle.getX() + 1) - this.getX(), 2)) + (Math.pow(Particle.getY() - this.getY(), 2))), 3));
+                    this.secondOrderFieldY_XNegOffset += (float)(((this.getUnitVector_XNegOffset() * 3) * (this.getCharacteristic()[1].getBehaviourModifier() * this.getUnitVector_XNegOffset()) - this.getCharacteristic()[1].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow((Particle.getX() - 1) - this.getX(), 2)) + (Math.pow(Particle.getY() - this.getY(), 2))), 3));
+                    this.secondOrderFieldY_YPosOffset += (float)(((this.getUnitVector_YPosOffset() * 3) * (this.getCharacteristic()[1].getBehaviourModifier() * this.getUnitVector_YPosOffset()) - this.getCharacteristic()[1].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow(Particle.getX() - this.getX(), 2)) + (Math.pow((Particle.getY() + 1) - this.getY(), 2))), 3));
+                    this.secondOrderFieldY_YNegOffset += (float)(((this.getUnitVector_YNegOffset() * 3) * (this.getCharacteristic()[1].getBehaviourModifier() * this.getUnitVector_YNegOffset()) - this.getCharacteristic()[1].getBehaviourModifier()) / Math.pow((float)Math.sqrt((Math.pow(Particle.getX() - this.getX(), 2)) + (Math.pow((Particle.getY() - 1) - this.getY(), 2))), 3));
 
                     this.secondOrderFieldY_Average = (this.secondOrderFieldY_Center + this.secondOrderFieldY_XPosOffset + this.secondOrderFieldY_XNegOffset + this.secondOrderFieldY_YNegOffset + this.secondOrderFieldY_YPosOffset) / 5;
 
+                    this.secondOrderFieldX_Previous = this.secondOrderFieldX_Final;
+                    this.secondOrderFieldY_Previous = this.secondOrderFieldY_Final;
+
                     this.secondOrderFieldX_Final = this.impressedFieldX + this.secondOrderFieldX_Average;
                     this.secondOrderFieldY_Final = this.impressedFieldY + this.secondOrderFieldY_Average;
-                }
+
+                    this.deltaSecondOrderFieldX = (this.deltaSecondOrderFieldX - this.secondOrderFieldX_Previous);
+                    this.deltaSecondOrderFieldY = (this.deltaSecondOrderFieldY - this.secondOrderFieldY_Previous);
+                
             }
-        }
+        
+
+public float calculateDiscreteApprox_DxEx() {
+    float value;
+    value = (this.deltaSecondOrderFieldX * (this.getX() + 1)) - (this.deltaSecondOrderFieldX * this.getX());
+    return value;
 }
+
+public float calculateDiscreteApprox_DyEx() {
+    float value;
+    value = (this.deltaSecondOrderFieldX * (this.getY() + 1)) - (this.deltaSecondOrderFieldX * this.getY());
+    return value;
+}
+
+public float calculateDiscreteApprox_DxEy() {
+    float value;
+    value = (this.deltaSecondOrderFieldY * (this.getX() + 1)) - (this.deltaSecondOrderFieldY * this.getX());
+    return value;
+}
+
+public float calculateDiscreteApprox_DyEy() {
+    float value;
+    value = (this.deltaSecondOrderFieldY * (this.getY() + 1)) - (this.deltaSecondOrderFieldY * this.getY());
+    return value;
+}
+
+public void calculateForce() {
+    float forceX_X = (this.getCharacteristic()[0].getBehaviourModifier() * this.calculateDiscreteApprox_DxEx());
+    float forceY_X = (this.getCharacteristic()[1].getBehaviourModifier() * this.calculateDiscreteApprox_DyEx());
+    float forceX_Y = (this.getCharacteristic()[0].getBehaviourModifier() * this.calculateDiscreteApprox_DxEy());
+    float forceY_Y = (this.getCharacteristic()[1].getBehaviourModifier() * this.calculateDiscreteApprox_DyEy());
+
+    this.getCharacteristic()[2].setBehaviourModifier(forceX_X + forceY_X);
+    this.getCharacteristic()[3].setBehaviourModifier(forceX_Y + forceY_Y);
+}
+
+   //Method calculates the mobility matrix for a specific particle, used for calculating velocity
+    public void calculateMobilityMatrix() {
+
+        //The current orientation of the particle
+        float degree = this.getOrientation();
+
+        //Defines the rotation matrix used to calculate polarizability
+        double[][] rotationArray = {{Math.cos(degree), Math.sin(degree)}, {(-Math.sin(degree)), Math.cos(degree)}};
+        Matrix rotationMatrix = new Matrix(rotationArray);
+
+        //Defines the inverse of the rotation matrix
+        double[][] inverseRotationArray = {{Math.cos(degree), (-Math.sin(degree))}, {(-Math.sin(degree)), Math.cos(degree)}};
+        Matrix inverseRotationMatrix = new Matrix(inverseRotationArray);
+
+        //Defines a matrix made up of the polarizabilities of the particle, called the tensor identity matrix
+        double[][] tensorIdentityArray = {{this.getMobilityParallel(), 0}, {0, this.getMobilityPerpendicular()}};
+        Matrix tensorIdentityMatrix = new Matrix(tensorIdentityArray);
+
+        //Calculates the polarizability matrix by multiplying the above matrices
+        Matrix mobility =  (rotationMatrix.multiply(tensorIdentityMatrix)).multiply(inverseRotationMatrix);
+        this.mobilityMatrix = mobility;
+     }
+
+    public void calculateVelocity() {
+        float velocityX = (float)this.getMobiltyMatrix().getValue(0, 0) * this.getCharacteristic()[2].getBehaviourModifier();
+        float velocityY = (float)this.getMobiltyMatrix().getValue(1, 0) * this.getCharacteristic()[3].getBehaviourModifier();
+
+        this.getCharacteristic()[4].setBehaviourModifier(velocityX);
+        this.getCharacteristic()[5].setBehaviourModifier(velocityY);
+    }
 
 
 
