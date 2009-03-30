@@ -20,7 +20,6 @@ public class Matrix {
     public Matrix() {
     }
 
-
     /* This overwrite method can print out matrix in appropriate way.
     It is nothing to do with calculate, just for testing purpose.*/
     public String toString() {
