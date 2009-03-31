@@ -66,14 +66,6 @@ public class ElecFieldParticle implements IParticle {
 
         this.chrs = new Characteristic[6];
 
-       /* // The orientation of a particle respective to the x axis of the lab frame
-        this.chrs[0] = new Characteristic();
-        this.chrs[0].ct = new CharacteristicType();
-        this.chrs[0].ct.setName("Orientation");
-        this.chrs[0].ct.setDescription("The orientation of the particle respective to the x axis of the lab frame.");
-        // Default to 0
-        this.chrs[0].setBehaviourModifier(0);*/
-
         // The dipole moment, induced by the impressed electric field on every particle
         this.chrs[0] = new Characteristic();
         this.chrs[0].ct = new CharacteristicType();
@@ -118,6 +110,63 @@ public class ElecFieldParticle implements IParticle {
         this.chrs[5].ct.setDescription("The velocity on the y axis of the particle.");
         // Default to 0
         this.chrs[5].setBehaviourModifier(0);
+
+        // The orientation of a particle respective to the x axis of the lab frame
+        this.chrs[6] = new Characteristic();
+        this.chrs[6].ct = new CharacteristicType();
+        this.chrs[6].ct.setName("Orientation");
+        this.chrs[6].ct.setDescription("The orientation of the particle respective to the x axis of the lab frame.");
+        // Default to 0
+        this.chrs[6].setBehaviourModifier(0);
+
+        // The polarizability of a particle parallel to the major axis
+        this.chrs[7] = new Characteristic();
+        this.chrs[7].ct = new CharacteristicType();
+        this.chrs[7].ct.setName("Parallel Polarizability");
+        this.chrs[7].ct.setDescription("The polarizability of a particle parallel to the major axis.");
+        // Default to 0
+        this.chrs[7].setBehaviourModifier(0);
+
+        // The polarizability of a particle parallel to the major axis
+        this.chrs[8] = new Characteristic();
+        this.chrs[8].ct = new CharacteristicType();
+        this.chrs[8].ct.setName("Perpendicular Polarizability");
+        this.chrs[8].ct.setDescription("The polarizability of a particle perpendicular to the major axis.");
+        // Default to 0
+        this.chrs[8].setBehaviourModifier(0);
+
+        // The electric field impressed on the particle's X axis
+        this.chrs[9] = new Characteristic();
+        this.chrs[9].ct = new CharacteristicType();
+        this.chrs[9].ct.setName("Impressed Field X");
+        this.chrs[9].ct.setDescription("The electric field impressed on the particle's X axis.");
+        // Default to 0
+        this.chrs[9].setBehaviourModifier(0);
+
+        // The electric field impressed on the particle's Y axis
+        this.chrs[10] = new Characteristic();
+        this.chrs[10].ct = new CharacteristicType();
+        this.chrs[10].ct.setName("Impressed Field Y");
+        this.chrs[10].ct.setDescription("The electric field impressed on the particle's Y axis.");
+        // Default to 0
+        this.chrs[10].setBehaviourModifier(0);
+
+        // The rotational mobility of a particle parallel to the major axis
+        this.chrs[11] = new Characteristic();
+        this.chrs[11].ct = new CharacteristicType();
+        this.chrs[11].ct.setName("Parallel Rotational Mobility");
+        this.chrs[11].ct.setDescription("The rotational mobility of a particle parallel to the major axis.");
+        // Default to 0
+        this.chrs[11].setBehaviourModifier(0);
+
+        // The rotational mobility of a particle parallel to the major axis
+        this.chrs[12] = new Characteristic();
+        this.chrs[12].ct = new CharacteristicType();
+        this.chrs[12].ct.setName("Perpendicular Rotational Mobility");
+        this.chrs[12].ct.setDescription("The rotational mobility of a particle perpendicular to the major axis.");
+        // Default to 0
+        this.chrs[12].setBehaviourModifier(0);
+
 
      }
 
@@ -232,8 +281,13 @@ public class ElecFieldParticle implements IParticle {
     }
 
     //Gets the polarizabilty matrix of the particle
-    public Matrix getPolarizabiltyMatrix() {
+    public Matrix getPolarizabilityMatrix() {
         return this.polarizabilityMatrix;
+    }
+
+    //Gets the polarizabilty matrix of the particle to polarizability
+    public void setPolarizabilityMatrix(Matrix polarizability) {
+        this.polarizabilityMatrix = polarizability;
     }
 
     //Gets the parallel polarizability of the particle
