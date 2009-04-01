@@ -54,7 +54,7 @@ public class FormulaTestCase extends TestCase {
     public void testsetDifferDeg(){
         boolean bool = false;
         double result0 = p.getDifferDeg();
-        DecimalFormat df = new DecimalFormat("#,##0.000000");
+        DecimalFormat df = new DecimalFormat("#,##0.000000000");
         double result = Double.parseDouble(df.format(result0));
         double answer0 = -0.0001 * Math.sin(2*p.getInitDegree());
         double answer = Double.parseDouble(df.format(answer0));
@@ -72,23 +72,54 @@ public class FormulaTestCase extends TestCase {
         double iniDegree = p.getInitDegree();
         double difDegree = -0.0001 * Math.sin(2*p.getInitDegree());
         double answer = (iniDegree + difDegree)%360;
-       
+        double wrongAns = 0.33334;
+
+        FormulaTestCase.assertEquals(answer, result);
+        FormulaTestCase.assertTrue(result == answer);
+        FormulaTestCase.assertFalse(result == wrongAns);
+
         FormulaTestCase.assertEquals(answer, result);
         System.out.println("The expected answer is " + result + ", and actural result is: " + answer);
     }
 
-/*
-    public void testsolv_P(){
-          Matrix result = p.solv_P();
 
-          double[][] answerArr = {{20},{20}};
-          Matrix answer = new Matrix(answerArr);
+
+    public void testsolvDipoleMoment(){
+          Matrix result = p.solvDipoleMoment();
+          
+          Matrix a = p.getRotaInversMatrix();
+          Matrix b = p.getRotaMatrix();
+          Matrix c = p.getTensorMatrix();
+          Matrix d = p.getFieldMatrix();
+
+          Matrix answer = a.multiply(c).multiply(b).s_multiply(d);
+          
+          //test result against the right answer
+          FormulaTestCase.assertTrue(result.equals(answer));
+          
+          //test result against the wrong answer
+          FormulaTestCase.assertFalse(result.equals(d));
+
+          System.out.println("A: " + answer);
+          System.out.println("R: " + result);
+    }
+
+    public void testsolvTensor(){
+          Matrix result = p.solvTensor();
+
+          Matrix a = p.getRotaInversMatrix();
+          Matrix b = p.getRotaMatrix();
+          Matrix c = p.getTensorMatrix();
+
+          Matrix answer = a.multiply(c).multiply(b);
 
           //test result against the right answer
           FormulaTestCase.assertTrue(result.equals(answer));
 
           //test result against the wrong answer
-          FormulaTestCase.assertFalse(result.equals(answer));
+          FormulaTestCase.assertFalse(result.equals(c));
+
+          System.out.println("A: " + answer);
+          System.out.println("R: " + result);
     }
-*/
 }
