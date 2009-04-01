@@ -63,14 +63,34 @@ public interface IParticle {
      */
 	void setZ(float newValue);
 
+	/**
+     * An object to contain the ParticleSize class being used for this particle type.
+     * @return An IParticleSize class implementation.
+     */
+    IParticleSize getParticleSize();
+
+    /**
+     * An object to contain the ParticleSize class being used for this particle type.
+     * @param ParticleSize The applicable ParticleSize class being used by this particle type.
+     */
+    void setParticleSize(IParticleSize ParticleSize);
+    // End Properties
+
+	// Begin Functions
+
     /**
      * Returns the package and class name (ie: particlesim.CalculateCharged) of
      * the ICalculate implementation to use.
      * @return
      */
     String getCalcName();
-	// End Properties
 
-	// Begin Functions
-	// End Functions
+    /**
+     * Returns the package and class name (ie: particlesim.ParticleSizeEllipse) of
+     * the IParticleSize implementation to use.
+     * @return
+     */
+    String getParticleSizeName();
+    
+    // End Functions
 }

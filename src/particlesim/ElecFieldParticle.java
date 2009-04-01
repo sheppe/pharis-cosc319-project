@@ -50,6 +50,7 @@ public class ElecFieldParticle implements IParticle {
      protected float secondOrderFieldY_Previous;
      protected float deltaSecondOrderFieldX;
      protected float deltaSecondOrderFieldY;
+     protected IParticleSize pSize;
 
      public ElecFieldParticle() {
 
@@ -503,9 +504,21 @@ public void calculateForce() {
         this.getCharacteristic()[5].setBehaviourModifier(velocityY);
     }
 
+    /**
+     * @see IParticle#getParticleSize()
+     * @return
+     */
+    public IParticleSize getParticleSize() {
+        return this.pSize;
+    }
 
-
-
+    /**
+     * @see IParticle#setParticleSize(java.lang.Object)
+     * @param ParticleSize
+     */
+    public void setParticleSize(IParticleSize ParticleSize) {
+        this.pSize = ParticleSize;
+    }
 
     /**
      * @see IParticle#getCalcName()
@@ -515,5 +528,12 @@ public void calculateForce() {
         return "particlesim.CalculateElecFieldParticle";
     }
 
+    /**
+     * @see IParticle#getParticleSizeName()
+     * @return
+     */
+    public String getParticleSizeName() {
+        return "particlesim.ParticleSizeEllipse";
+    }
 
 }
