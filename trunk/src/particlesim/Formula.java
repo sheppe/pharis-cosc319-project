@@ -111,6 +111,24 @@ public class Formula {
        return this.degByTime;
    }
 
+   public Matrix getRotaMatrix(){
+       return this.rotation;
+   }
+
+   public Matrix getRotaInversMatrix(){
+       return this.rotation_invers;
+   }
+
+   public Matrix getTensorMatrix(){
+       return this.tensor_0;
+   }
+
+   public Matrix getFieldMatrix(){
+       return this.field;
+   }
+
+
+
    public void setPAPParalle(double PAPParalle){
       this.PAPParalle = PAPParalle;
    }
@@ -161,13 +179,12 @@ public class Formula {
         this.degByTime = currentDegree;
    }
    
-    
 
     /**
      * solve the dipole moment P on partical
      * @return a matrix of dipolmoment.
      */
-    public Matrix solv_P() {
+    public Matrix solvDipoleMoment() {
         Matrix P =  rotation_invers.multiply(tensor_0).multiply(rotation).s_multiply(field);
         return P;
     }
@@ -176,7 +193,7 @@ public class Formula {
      * sovle the tensor
      * @return a matrix of tensor.
      */
-    public Matrix solv_tensor() {
+    public Matrix solvTensor() {
         Matrix tensor = rotation_invers.multiply(tensor_0).multiply(rotation);
         return tensor;
     }
