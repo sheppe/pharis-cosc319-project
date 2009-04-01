@@ -14,6 +14,7 @@ import javax.media.opengl.*;
 import javax.media.opengl.glu.*;
 import java.util.Calendar;
 import java.util.Date;
+import java.lang.Math;
 
 /**
  * This class handles drawing an array of IParticle onto the GL panel. It
@@ -46,6 +47,9 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
     // Use to indicate whether or not to log the data.
     private boolean doLog = false;
 
+    // GL object that performs rendering.
+    private GL gl;
+
     /**
      * Constructs the worker thread that handles running the calculations and
      * logging the data in a separate thread.
@@ -67,7 +71,7 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
      * Draws each particle in the class level parts array.
      * @param gl
      */
-    private void drawParticle(GL gl) {
+    private void drawParticle() {
         // Call the functions to calculate particle forces and movements.
         GLUT glut = new GLUT();
 
@@ -101,20 +105,23 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
         {
             if(i % 2 == 0)
             {
-                gl.glColor3f(1, 0, 0);
+                this.gl.glColor3f(1, 0, 0);
             }
             else
             {
-                gl.glColor3f(0, 0, 1);
+                this.gl.glColor3f(0, 0, 1);
             }
 
             i++;
 
             // Draw a sphere to represent the particle.
-            gl.glPushMatrix();
-            gl.glTranslatef(p1.getX(), p1.getY(), p1.getZ());
-            glut.glutSolidSphere(10.0, 20, 20);
-            gl.glPopMatrix();
+            this.gl.glPushMatrix();
+            //this.gl.glTranslatef(p1.getX(), p1.getY(), p1.getZ());
+            //glut.glutSolidSphere(10.0, 20, 20);
+
+            //this.DrawCircle(p1.getX(), p1.getY(), p1.getParticleSize().getParticleSizeX(), this.GetNumCircleSegments(p1.getParticleSize().getParticleSizeY()));
+            this.ellipseMidpoint((int)p1.getX(), (int)p1.getY(), (int)p1.getParticleSize().getParticleSizeX(), (int)p1.getParticleSize().getParticleSizeY());
+            this.gl.glPopMatrix();
             if(this.isCancelled()) {
                 animator.stop();
             }
@@ -171,8 +178,8 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
      * @param drawable
      */
     public void init(GLAutoDrawable drawable) {
-        GL gl = drawable.getGL();
-        gl.glClearColor(0.0f, 0.1f, 0.1f, 0.0f);
+        this.gl = drawable.getGL();
+        this.gl.glClearColor(0.0f, 0.1f, 0.1f, 0.0f);
     }
 
     /**
@@ -180,10 +187,10 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
      * @param drawable
      */
     public void display(GLAutoDrawable drawable) {
-        GL gl = drawable.getGL();
-        gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-        drawParticle(gl);
-        gl.glFlush();
+        this.gl = drawable.getGL();
+        this.gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+        drawParticle();
+        this.gl.glFlush();
     }
 
     /**
@@ -195,11 +202,10 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
      * @param h
      */
     public void reshape(GLAutoDrawable drawable, int x, int y, int w, int h) {
-        GL gl = drawable.getGL();
+        final GL gl = drawable.getGL();
         gl.glMatrixMode(GL.GL_PROJECTION);
         gl.glLoadIdentity();
         gl.glViewport(0, 0, w, h);
-        gl.glOrtho(0.0, (float)w, (float)h, 0.0, 0.0, 10000.0);
 
         /*if (w <= (h * 2)) //
     gl.glOrtho(-6.0, 6.0, -3.0 * ((float) h * 2) / (float) w, //
@@ -207,9 +213,10 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
     else gl.glOrtho(-6.0 * (float) w / ((float) h * 2), //
         6.0 * (float) w / ((float) h * 2), -3.0, 3.0, -10.0, 10.0);*/
 
-        gl.glMatrixMode(GL.GL_MODELVIEW);
+        gl.glMatrixMode(GL.GL_PROJECTION);// | GL.GL_MODELVIEW);
         gl.glLoadIdentity();
 
+        gl.glOrtho(0.0, (float)w, (float)h, 0.0, 0.0, 10000.0);
 
     }
 
@@ -220,7 +227,120 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
      * @param deviceChanged
      */
     public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        // Do nothing.
     }
-}
 
+    void setPixel (double x, double y)
+    {
+        gl.glBegin (GL.GL_POINTS);
+        gl.glVertex2d (x, y);
+        gl.glEnd( );
+    }
+
+
+    void ellipseMidpoint (int xCenter, int yCenter, int Rx, int Ry)
+    {
+        int Rx2 = Rx * Rx;
+        int Ry2 = Ry * Ry;
+        int twoRx2 = 2 * Rx2;
+        int twoRy2 = 2 * Ry2;
+        int p;
+        int x = 0;
+        int y = Ry;
+        int px = 0;     // Initial value of midpoint parameter.
+        int py = twoRx2 * y;
+
+
+        /* Plot the initial point in each Ellipse quadrant. */
+        ellipsePlotPoints (xCenter, yCenter, x, y);
+
+        /* Region 1 */
+        p = Math.round ((int) (Ry2 - (Rx2 * Ry) + (0.25 * Rx2)));
+        while (px < py)
+        {
+            x = x+1;
+            px = px + twoRy2;
+            if (p < 0)
+            {
+                p = p + Ry2 + px;
+            }
+            else
+            {
+                y = y-1;
+                py = py-twoRx2;
+                p = p + Ry2 + px - py;
+            }
+            ellipsePlotPoints (xCenter, yCenter, x, y);
+        }
+
+        /* Region 2 */
+        p = Math.round ((int) (Ry2 * (x+0.5) * (x+0.5) + Rx2 * (y-1) * (y-1) - Rx2 * Ry2));
+        while (y > 0)
+        {
+            y = y-1;
+            py = py - twoRx2;
+            if (p > 0)
+            {
+                p = p + Rx2 - py;
+            }
+            else
+            {
+                x = x + 1;
+                px = px + twoRy2;
+                p = p + Rx2 - py + px;
+            }
+            ellipsePlotPoints (xCenter, yCenter, x, y);
+        }
+    }
+
+    void ellipsePlotPoints (int xCenter, int yCenter, int x, int y)
+    {
+        setPixel (xCenter + x, yCenter + y);
+        setPixel (xCenter - x, yCenter + y);
+        setPixel (xCenter + x, yCenter - y);
+        setPixel (xCenter - x, yCenter - y);
+    }
+
+    /*
+    void DrawCircle(float cx, float cy, float r, int num_segments)
+    {
+        double theta = 2 * 3.1415926 / num_segments;
+        double tangetial_factor = java.lang.Math.tan(theta);//calculate the tangential factor
+
+        double radial_factor = java.lang.Math.cos(theta);//calculate the radial factor
+
+        float x = r;//we start at angle = 0
+
+        float y = 0;
+
+        this.gl.glBegin(GL.GL_LINE_LOOP);
+        for(int ii = 0; ii < num_segments; ii++)
+        {
+            this.gl.glVertex2f(x + cx, y + cy);//output vertex
+
+            //calculate the tangential vector
+            //remember, the radial vector is (x, y)
+            //to get the tangential vector we flip those coordinates and negate one of them
+
+            float tx = -y;
+            float ty = x;
+
+            //add the tangential vector
+
+            x += tx * tangetial_factor;
+            y += ty * tangetial_factor;
+
+            //correct using the radial factor
+
+            x *= radial_factor;
+            y *= radial_factor;
+        }
+        this.gl.glEnd();
+    }
+
+    int GetNumCircleSegments(float r)
+    {
+        return (int)(2.0f * 3.1415926f / (java.lang.Math.acos(1 - 0.25 / r)));//change the 0.25 to a smaller/bigger number as needed
+    }
+    */
+}

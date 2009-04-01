@@ -14,6 +14,7 @@ public class ChargedParticle implements IParticle {
      protected float x;
      protected float y;
      protected float z;
+     protected IParticleSize pSize;
 
     /**
      * @see IParticle#()
@@ -133,11 +134,35 @@ public class ChargedParticle implements IParticle {
     }
 
     /**
-     * @see IParticle#getCalcName() 
+     * @see IParticle#getParticleSize()
+     * @return
+     */
+    public IParticleSize getParticleSize() {
+        return this.pSize;
+    }
+
+    /**
+     * @see IParticle#setParticleSize(java.lang.Object)
+     * @param ParticleSize
+     */
+    public void setParticleSize(IParticleSize ParticleSize) {
+        this.pSize = ParticleSize;
+    }
+
+    /**
+     * @see IParticle#getCalcName()
      * @return
      */
     public String getCalcName() {
         return "particlesim.CalculateCharged";
+    }
+
+    /**
+     * @see IParticle#getParticleSizeName()
+     * @return
+     */
+    public String getParticleSizeName() {
+        return "particlesim.ParticleSizeEllipse";
     }
 
 }

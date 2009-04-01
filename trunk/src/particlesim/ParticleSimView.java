@@ -139,6 +139,11 @@ public class ParticleSimView extends FrameView {
         jLabel4 = new javax.swing.JLabel();
         jtElecFld = new javax.swing.JTextField();
         jcDoLog = new javax.swing.JCheckBox();
+        jtPSizeX = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jtPSizeY = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jmRun = new javax.swing.JCheckBoxMenuItem();
@@ -213,6 +218,21 @@ public class ParticleSimView extends FrameView {
         jcDoLog.setToolTipText(resourceMap.getString("jcDoLog.toolTipText")); // NOI18N
         jcDoLog.setName("jcDoLog"); // NOI18N
 
+        jtPSizeX.setText(resourceMap.getString("jtPSizeX.text")); // NOI18N
+        jtPSizeX.setName("jtPSizeX"); // NOI18N
+
+        jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
+        jLabel5.setName("jLabel5"); // NOI18N
+
+        jtPSizeY.setText(resourceMap.getString("jtPSizeY.text")); // NOI18N
+        jtPSizeY.setName("jtPSizeY"); // NOI18N
+
+        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
+        jLabel6.setName("jLabel6"); // NOI18N
+
+        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
+        jLabel7.setName("jLabel7"); // NOI18N
+
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -235,19 +255,33 @@ public class ParticleSimView extends FrameView {
                         .addContainerGap()
                         .add(jtNumP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
                     .add(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jLabel4))
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jtElecFld, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
-                    .add(mainPanelLayout.createSequentialGroup()
                         .add(71, 71, 71)
                         .add(jbRun))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jcDoLog)
-                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))))
+                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jtElecFld, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jLabel5))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(mainPanelLayout.createSequentialGroup()
+                                .add(jLabel4)
+                                .add(76, 76, 76))
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, mainPanelLayout.createSequentialGroup()
+                                .add(jLabel6)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jtPSizeX, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(18, 18, 18)
+                                .add(jLabel7)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jtPSizeY, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(glGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 439, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
@@ -259,10 +293,18 @@ public class ParticleSimView extends FrameView {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jtNumP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jLabel5)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 7, Short.MAX_VALUE)
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel6)
+                    .add(jtPSizeX, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel7)
+                    .add(jtPSizeY, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jLabel4)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jtElecFld, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jcbPType, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -404,6 +446,9 @@ public class ParticleSimView extends FrameView {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbRun;
@@ -416,6 +461,8 @@ public class ParticleSimView extends FrameView {
     private javax.swing.JMenuItem jmSave;
     private javax.swing.JTextField jtElecFld;
     private javax.swing.JTextField jtNumP;
+    private javax.swing.JTextField jtPSizeX;
+    private javax.swing.JTextField jtPSizeY;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JLabel statusAnimationLabel;
@@ -438,20 +485,25 @@ public class ParticleSimView extends FrameView {
      */
     private void PopulateParticleCombo()
     {
-        // Populate the combo box with all of the classes that exist, which implement the IParticle interface.
-        ClassFinder finder = new ClassFinder();
-        finder.addClassPath();
-        
-        ClassFilter filter = new SubclassClassFilter(particlesim.IParticle.class);
-
-        Collection<ClassInfo> foundClasses = new ArrayList<ClassInfo>();
-        finder.findClasses (foundClasses, filter);
-
-        for (ClassInfo classInfo : foundClasses)
+        try
         {
-            this.jcbPType.addItem(classInfo.getClassName()); //.substring(classInfo.getClassName().lastIndexOf(".")+1));
-        }
+            // Populate the combo box with all of the classes that exist, which implement the IParticle interface.
+            ClassFinder finder = new ClassFinder();
+            finder.addClassPath();
 
+            ClassFilter filter = new SubclassClassFilter(particlesim.IParticle.class);
+
+            Collection<ClassInfo> foundClasses = new ArrayList<ClassInfo>();
+            finder.findClasses (foundClasses, filter);
+
+            for (ClassInfo classInfo : foundClasses)
+            {
+                this.jcbPType.addItem(classInfo.getClassName()); //.substring(classInfo.getClassName().lastIndexOf(".")+1));
+            }
+        }
+        catch(Exception ex)
+        {
+        }
     }
 
     /**
@@ -510,6 +562,8 @@ public class ParticleSimView extends FrameView {
         // and have it create the number particles indicated by the user.
         IParticle ip = null;
         ICalculate ic = null;
+        IParticleSize ips = null;
+
         Class cl = null;
         Object ob = null;
         try {
@@ -521,14 +575,20 @@ public class ParticleSimView extends FrameView {
             cl = loader.loadClass(ip.getCalcName());
             ob = cl.newInstance();
             ic = ((ICalculate)ob);
+            cl = loader.loadClass(ip.getParticleSizeName());
+            ob = cl.newInstance();
+            ips = ((IParticleSize)ob);
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        // Set the size of the particles based on the user input.
+        ips.setParticleSizeX(Integer.parseInt(this.jtPSizeX.getText()));
+        ips.setParticleSizeY(Integer.parseInt(this.jtPSizeY.getText()));
 
         // Initialize the particle array.
-        parts = ic.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.glGraphics.getWidth(), this.glGraphics.getHeight(), 0);
+        parts = ic.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.glGraphics.getWidth(), this.glGraphics.getHeight(), 0, ips);
 
         // In a new thread, launch the routine that handles the drawing and calculating of forces and positions.
         draw = new DrawParticles(this.glGraphics, parts, this.jcDoLog.isSelected());

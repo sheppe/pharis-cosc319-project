@@ -164,7 +164,7 @@ public class CalculateElecFieldParticle implements ICalculate {
         return lParticles.toArray(Particles);
     }
 
-    public IParticle[] InitializeParticles(int NumParticles, int MaxX, int MaxY, int MaxZ) {
+    public IParticle[] InitializeParticles(int NumParticles, int MaxX, int MaxY, int MaxZ, IParticleSize ParticleSize) {
         ElecFieldParticle[] efp = new ElecFieldParticle[NumParticles];
         return efp;
     }

@@ -24,9 +24,10 @@ public interface ICalculate {
      * @param MaxX The X boundary of the particles' container.
      * @param MaxY The Y boundary of the particles' container.
      * @param MaxZ The Z boundary of the particles' container.
-     * @return
+     * @param ParticleSize The IParticleSize class implementation for the particle type we are working with.
+     * @return An array of particles as modified by the function.
      */
-    public IParticle[] InitializeParticles(int NumParticles, int MaxX, int MaxY, int MaxZ);
+    public IParticle[] InitializeParticles(int NumParticles, int MaxX, int MaxY, int MaxZ, IParticleSize ParticleSize);
 
     /**
      * Adjusts the particles' axis values based on existing values.

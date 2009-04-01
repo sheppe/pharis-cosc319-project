@@ -71,25 +71,38 @@ public class CalculateCharged implements ICalculate {
 
     /**
      * Creates an array of charged particles.
-     * @see ICalculate#InitializeParticles(int, int, int, int)
-     * @param NumParticles The number of particles to create.
-     * @param MaxX The maximum extent of the X axis.
-     * @param MaxY The maximum extent of the Y axis.
-     * @param MaxZ The maximum extent of the Z axis.
+     * @see ICalculate#InitializeParticles
+     * @param NumParticles The number of particle to create.
+     * @param MaxX The X boundary of the particles' container.
+     * @param MaxY The Y boundary of the particles' container.
+     * @param MaxZ The Z boundary of the particles' container.
+     * @param ParticleSize The IParticleSize class implementation for the particle type we are working with.
      * @return An array of particles as modified by the function.
      */
-    public IParticle[] InitializeParticles(int NumParticles, int MaxX, int MaxY, int MaxZ) {
+    public IParticle[] InitializeParticles(int NumParticles, int MaxX, int MaxY, int MaxZ, IParticleSize ParticleSize) {
         // Create our charged particles array, using the number of particles passed in.
         ChargedParticle[] cp;
         cp = new ChargedParticle[NumParticles];
 
         // The size of the particles.
-        float fPDiameter = 25;
-        float fPRadius = fPDiameter / 2;
+
         int x = 1;
         for(int i=0; i<NumParticles; i++)
         {
             cp[i] = new ChargedParticle();
+
+            // Don't forget to assign the ParticleSize class to the particle! 
+            // This is so it can be retrieved later.
+            cp[i].setParticleSize(ParticleSize);
+            
+            // Derive the diameter from the rectangular (x,y) size coordinates.
+            // This is done using the following formula:
+            // Diameter = 1.30 * ((x*y)0.625) / (x+y)0.25)
+            float fPDiameter = (float)(1.30 * ((ParticleSize.getParticleSizeX() *
+                    ParticleSize.getParticleSizeY())*0.625 /
+                    ((ParticleSize.getParticleSizeX() +
+                    ParticleSize.getParticleSizeY())*0.25)));
+            float fPRadius = fPDiameter / 2;
             
             // Set the charge of the particle (location hard-coded at array index 0).
             cp[i].getCharacteristic()[0].setBehaviourModifier(((x % 2)*2)-1);
