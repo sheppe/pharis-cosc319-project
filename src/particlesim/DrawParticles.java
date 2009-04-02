@@ -85,16 +85,6 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
             this.log.Log(0, parts);
         }
 
-        float no_mat[] = { 0.0f, 0.0f, 0.0f, 1.0f };
-        float mat_ambient[] = { 0.7f, 0.7f, 0.7f, 1.0f };
-        float mat_ambient_color[] = { 0.8f, 0.8f, 0.2f, 1.0f };
-        float mat_diffuse[] = { 0.1f, 0.5f, 0.8f, 1.0f };
-        float mat_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-        float no_shininess[] = { 0.0f };
-        float low_shininess[] = { 5.0f };
-        float high_shininess[] = { 100.0f };
-        float mat_emission[] = { 0.3f, 0.2f, 0.2f, 0.0f };
-
         // Convert the array to a list to ease parsing it.
         List<IParticle> lParticles = Arrays.asList(parts);
 
@@ -116,10 +106,7 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
 
             // Draw a sphere to represent the particle.
             this.gl.glPushMatrix();
-            //this.gl.glTranslatef(p1.getX(), p1.getY(), p1.getZ());
-            //glut.glutSolidSphere(10.0, 20, 20);
 
-            //this.DrawCircle(p1.getX(), p1.getY(), p1.getParticleSize().getParticleSizeX(), this.GetNumCircleSegments(p1.getParticleSize().getParticleSizeY()));
             this.ellipseMidpoint((int)p1.getX(), (int)p1.getY(), (int)p1.getParticleSize().getParticleSizeX(), (int)p1.getParticleSize().getParticleSizeY());
             this.gl.glPopMatrix();
             if(this.isCancelled()) {
