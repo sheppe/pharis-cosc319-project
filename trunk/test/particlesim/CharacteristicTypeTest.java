@@ -145,4 +145,58 @@ public class CharacteristicTypeTest {
         fail("The test case is a prototype.");
     }
 
+    /**
+     * Test of getDescription method, of class CharacteristicType.
+     */
+    @Test
+    public void testGetDescription2() {
+        System.out.println("getDescription");
+        CharacteristicType instance = new CharacteristicType();
+        String expResult = "";
+        String result = instance.getDescription();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getName method, of class CharacteristicType.
+     */
+    @Test
+    public void testGetName2() {
+        System.out.println("getName");
+        CharacteristicType instance = new CharacteristicType();
+        String expResult = "";
+        String result = instance.getName();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setDescription method, of class CharacteristicType.
+     */
+    @Test
+    public void testSetDescription_String_1args() {
+        System.out.println("setDescription");
+        String newValue = "";
+        CharacteristicType instance = new CharacteristicType();
+        instance.setDescription(newValue);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setName method, of class CharacteristicType.
+     */
+    @Test
+    public void testSetName_String_1args() {
+        System.out.println("setName");
+        String newValue = "";
+        CharacteristicType instance = new CharacteristicType();
+        instance.setName(newValue);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
 }
