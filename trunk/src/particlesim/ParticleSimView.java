@@ -136,7 +136,7 @@ public class ParticleSimView extends FrameView {
         jlChars = new javax.swing.JList();
         jbRun = new javax.swing.JButton();
         glGraphics = new javax.media.opengl.GLCanvas();
-        jLabel4 = new javax.swing.JLabel();
+        jElecFieldLabel = new javax.swing.JLabel();
         jtElecFld = new javax.swing.JTextField();
         jcDoLog = new javax.swing.JCheckBox();
         jtPSizeX = new javax.swing.JTextField();
@@ -144,6 +144,16 @@ public class ParticleSimView extends FrameView {
         jtPSizeY = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jPolarizabilityLabel = new javax.swing.JLabel();
+        jPolarizabilityParallelLabel = new javax.swing.JLabel();
+        jPolarizabilityParallelText = new javax.swing.JTextField();
+        jPolarizabilityPerpLabel = new javax.swing.JLabel();
+        jPolarizabilityPerpText = new javax.swing.JTextField();
+        jMobilityLabel = new javax.swing.JLabel();
+        jMobilityParallelLabel = new javax.swing.JLabel();
+        jMobilityParallelText = new javax.swing.JTextField();
+        jMobilityPerpLabel = new javax.swing.JLabel();
+        jMobilityPerpText = new javax.swing.JTextField();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jmRun = new javax.swing.JCheckBoxMenuItem();
@@ -208,8 +218,8 @@ public class ParticleSimView extends FrameView {
 
         glGraphics.setName("glGraphics"); // NOI18N
 
-        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
-        jLabel4.setName("jLabel4"); // NOI18N
+        jElecFieldLabel.setText(resourceMap.getString("jElecFieldLabel.text")); // NOI18N
+        jElecFieldLabel.setName("jElecFieldLabel"); // NOI18N
 
         jtElecFld.setText(resourceMap.getString("jtElecFld.text")); // NOI18N
         jtElecFld.setName("jtElecFld"); // NOI18N
@@ -233,6 +243,36 @@ public class ParticleSimView extends FrameView {
         jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
         jLabel7.setName("jLabel7"); // NOI18N
 
+        jPolarizabilityLabel.setText(resourceMap.getString("jPolarizabilityLabel.text")); // NOI18N
+        jPolarizabilityLabel.setName("jPolarizabilityLabel"); // NOI18N
+
+        jPolarizabilityParallelLabel.setText(resourceMap.getString("jPolarizabilityParallelLabel.text")); // NOI18N
+        jPolarizabilityParallelLabel.setName("jPolarizabilityParallelLabel"); // NOI18N
+
+        jPolarizabilityParallelText.setText(resourceMap.getString("jPolarizabilityParallelText.text")); // NOI18N
+        jPolarizabilityParallelText.setName("jPolarizabilityParallelText"); // NOI18N
+
+        jPolarizabilityPerpLabel.setText(resourceMap.getString("jPolarizabilityPerpLabel.text")); // NOI18N
+        jPolarizabilityPerpLabel.setName("jPolarizabilityPerpLabel"); // NOI18N
+
+        jPolarizabilityPerpText.setText(resourceMap.getString("jPolarizabilityPerpText.text")); // NOI18N
+        jPolarizabilityPerpText.setName("jPolarizabilityPerpText"); // NOI18N
+
+        jMobilityLabel.setText(resourceMap.getString("jMobilityLabel.text")); // NOI18N
+        jMobilityLabel.setName("jMobilityLabel"); // NOI18N
+
+        jMobilityParallelLabel.setText(resourceMap.getString("jMobilityParallelLabel.text")); // NOI18N
+        jMobilityParallelLabel.setName("jMobilityParallelLabel"); // NOI18N
+
+        jMobilityParallelText.setText(resourceMap.getString("jMobilityParallelText.text")); // NOI18N
+        jMobilityParallelText.setName("jMobilityParallelText"); // NOI18N
+
+        jMobilityPerpLabel.setText(resourceMap.getString("jMobilityPerpLabel.text")); // NOI18N
+        jMobilityPerpLabel.setName("jMobilityPerpLabel"); // NOI18N
+
+        jMobilityPerpText.setText(resourceMap.getString("jMobilityPerpText.text")); // NOI18N
+        jMobilityPerpText.setName("jMobilityPerpText"); // NOI18N
+
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -241,86 +281,126 @@ public class ParticleSimView extends FrameView {
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
+                        .add(jtElecFld, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jElecFieldLabel))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
                         .add(jLabel2))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .add(jLabel1))
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jcbPType, 0, 194, Short.MAX_VALUE))
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jLabel3))
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jtNumP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .add(71, 71, 71)
-                        .add(jbRun))
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jcDoLog)
-                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jtElecFld, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                        .add(jtNumP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .add(jLabel5))
                     .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(mainPanelLayout.createSequentialGroup()
-                                .add(jLabel4)
-                                .add(76, 76, 76))
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, mainPanelLayout.createSequentialGroup()
-                                .add(jLabel6)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jtPSizeX, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(18, 18, 18)
-                                .add(jLabel7)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jtPSizeY, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
+                        .add(jLabel6)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jtPSizeX, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
+                        .add(jLabel7)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jtPSizeY, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jPolarizabilityLabel))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jPolarizabilityParallelLabel)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPolarizabilityParallelText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPolarizabilityPerpLabel)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPolarizabilityPerpText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .add(71, 71, 71)
+                        .add(jbRun))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jcDoLog))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jLabel3))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jcbPType, 0, 220, Short.MAX_VALUE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jLabel1))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jMobilityLabel))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jMobilityParallelLabel)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jMobilityParallelText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jMobilityPerpLabel)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jMobilityPerpText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(glGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 439, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(mainPanelLayout.createSequentialGroup()
-                .add(11, 11, 11)
+                .addContainerGap()
                 .add(jLabel2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jtNumP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel5)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel6)
                     .add(jtPSizeX, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel7)
                     .add(jtPSizeY, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jLabel4)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jElecFieldLabel)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jtElecFld, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPolarizabilityLabel)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jPolarizabilityParallelLabel)
+                    .add(jPolarizabilityParallelText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jPolarizabilityPerpLabel)
+                    .add(jPolarizabilityPerpText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jMobilityLabel)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jMobilityParallelLabel)
+                    .add(jMobilityParallelText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jMobilityPerpLabel)
+                    .add(jMobilityPerpText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(15, 15, 15)
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jcbPType, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(30, 30, 30)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jcDoLog)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jbRun)
                 .addContainerGap())
-            .add(glGraphics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+            .add(glGraphics, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
         );
 
         jcDoLog.getAccessibleContext().setAccessibleName(resourceMap.getString("jCheckBox1.AccessibleContext.accessibleName")); // NOI18N
+        jPolarizabilityLabel.getAccessibleContext().setAccessibleName(resourceMap.getString("jLabel8.AccessibleContext.accessibleName")); // NOI18N
 
         menuBar.setName("menuBar"); // NOI18N
 
@@ -384,18 +464,18 @@ public class ParticleSimView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
+            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
             .add(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(statusMessageLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 633, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 659, Short.MAX_VALUE)
                 .add(statusAnimationLabel)
                 .addContainerGap())
             .add(statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(statusPanelLayout.createSequentialGroup()
-                    .add(0, 315, Short.MAX_VALUE)
+                    .add(0, 328, Short.MAX_VALUE)
                     .add(jlFps)
-                    .add(0, 316, Short.MAX_VALUE)))
+                    .add(0, 329, Short.MAX_VALUE)))
         );
         statusPanelLayout.setVerticalGroup(
             statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -442,13 +522,23 @@ public class ParticleSimView extends FrameView {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.media.opengl.GLCanvas glGraphics;
+    private javax.swing.JLabel jElecFieldLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jMobilityLabel;
+    private javax.swing.JLabel jMobilityParallelLabel;
+    private javax.swing.JTextField jMobilityParallelText;
+    private javax.swing.JLabel jMobilityPerpLabel;
+    private javax.swing.JTextField jMobilityPerpText;
+    private javax.swing.JLabel jPolarizabilityLabel;
+    private javax.swing.JLabel jPolarizabilityParallelLabel;
+    private javax.swing.JTextField jPolarizabilityParallelText;
+    private javax.swing.JLabel jPolarizabilityPerpLabel;
+    private javax.swing.JTextField jPolarizabilityPerpText;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbRun;
@@ -515,6 +605,21 @@ public class ParticleSimView extends FrameView {
     public void ParticleTypeSelected() throws InstantiationException, IllegalAccessException {
         // Persist the selected value to the sSelectedParticle class variable.
         sSelectedParticle = this.jcbPType.getSelectedItem().toString();
+
+        if(sSelectedParticle.equals("particlesim.ChargedParticle")) {
+            this.jMobilityLabel.setVisible(false);
+            this.jMobilityParallelLabel.setVisible(false);
+            this.jMobilityPerpLabel.setVisible(false);
+            this.jMobilityParallelText.setVisible(false);
+            this.jMobilityPerpText.setVisible(false);
+            this.jPolarizabilityLabel.setVisible(false);
+            this.jPolarizabilityParallelLabel.setVisible(false);
+            this.jPolarizabilityPerpLabel.setVisible(false);
+            this.jPolarizabilityParallelText.setVisible(false);
+            this.jPolarizabilityPerpText.setVisible(false);
+            this.jtElecFld.setVisible(false);
+            this.jElecFieldLabel.setVisible(false);
+        }
         
         // Load and initialize the selected particle type.
         Class p = null;
@@ -556,6 +661,7 @@ public class ParticleSimView extends FrameView {
     private void DoRun() throws InstantiationException, IllegalAccessException
     {
         // An array of particles to pass between this and that.
+        sSelectedParticle = this.jcbPType.getSelectedItem().toString();
         particlesim.IParticle[] parts;
 
         // Instantiate the Calculate class for the selected particle type
@@ -563,6 +669,10 @@ public class ParticleSimView extends FrameView {
         IParticle ip = null;
         ICalculate ic = null;
         IParticleSize ips = null;
+
+        //Extra value arrays for each particle type
+        int[] chargedExtras = new int[0];
+        int[] elecFieldExtras = new int[4];
 
         Class cl = null;
         Object ob = null;
@@ -588,7 +698,20 @@ public class ParticleSimView extends FrameView {
         ips.setParticleSizeY(Integer.parseInt(this.jtPSizeY.getText()));
 
         // Initialize the particle array.
-        parts = ic.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.glGraphics.getWidth(), this.glGraphics.getHeight(), 0, ips);
+        if(sSelectedParticle.equals("particlesim.ChargedParticle"))
+            parts = ic.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.glGraphics.getWidth(), this.glGraphics.getHeight(), 0, ips, chargedExtras);
+        else if(sSelectedParticle.equals("particlesim.ElecFieldParticle")) {
+
+            elecFieldExtras[0] = Integer.parseInt(this.jtElecFld.getText());
+            elecFieldExtras[1] = Integer.parseInt(this.jPolarizabilityParallelText.getText());
+            elecFieldExtras[2] = Integer.parseInt(this.jPolarizabilityPerpText.getText());
+            elecFieldExtras[3] = Integer.parseInt(this.jMobilityParallelText.getText());
+            elecFieldExtras[4] = Integer.parseInt(this.jMobilityPerpText.getText());
+
+            parts = ic.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.glGraphics.getWidth(), this.glGraphics.getHeight(), 0, ips, elecFieldExtras);
+        }
+
+
 
         // In a new thread, launch the routine that handles the drawing and calculating of forces and positions.
         draw = new DrawParticles(this.glGraphics, parts, this.jcDoLog.isSelected());

@@ -27,7 +27,8 @@ public interface ICalculate {
      * @param ParticleSize The IParticleSize class implementation for the particle type we are working with.
      * @return An array of particles as modified by the function.
      */
-    public IParticle[] InitializeParticles(int NumParticles, int MaxX, int MaxY, int MaxZ, IParticleSize ParticleSize);
+    public IParticle[] InitializeParticles(int NumParticles, int MaxX, int MaxY, int MaxZ, IParticleSize ParticleSize, int[] extraValues);
+
 
     /**
      * Adjusts the particles' axis values based on existing values.
