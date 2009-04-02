@@ -28,7 +28,7 @@ public class ElecFieldParticle implements IParticle {
          this.x = 0;
          this.y = 0;
          this.z = 0;
-         this.orientation = 0;
+         
 
          // Particles affected by electric fields contain 7 different properties
          // The orientation of the particle in degrees and X and Y values for dipole moments, force and velocity
