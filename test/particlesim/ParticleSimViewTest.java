@@ -93,4 +93,28 @@ public class ParticleSimViewTest {
         fail("The test case is a prototype.");
     }
 
+    /**
+     * Test of showAboutBox method, of class ParticleSimView.
+     */
+    @Test
+    public void testShowAboutBox2() {
+        System.out.println("showAboutBox");
+        ParticleSimView instance = null;
+        instance.showAboutBox();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of ParticleTypeSelected method, of class ParticleSimView.
+     */
+    @Test
+    public void testParticleTypeSelected2() throws Exception {
+        System.out.println("ParticleTypeSelected");
+        ParticleSimView instance = null;
+        instance.ParticleTypeSelected();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
 }

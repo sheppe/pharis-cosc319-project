@@ -145,4 +145,58 @@ public class CharacteristicTest {
         fail("The test case is a prototype.");
     }
 
+    /**
+     * Test of getCharacteristicType method, of class Characteristic.
+     */
+    @Test
+    public void testGetCharacteristicType2() {
+        System.out.println("getCharacteristicType");
+        Characteristic instance = new Characteristic();
+        CharacteristicType expResult = null;
+        CharacteristicType result = instance.getCharacteristicType();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setCharacteristicType method, of class Characteristic.
+     */
+    @Test
+    public void testSetCharacteristicType_CharacteristicType_1args() {
+        System.out.println("setCharacteristicType");
+        CharacteristicType newValue = null;
+        Characteristic instance = new Characteristic();
+        instance.setCharacteristicType(newValue);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getBehaviourModifier method, of class Characteristic.
+     */
+    @Test
+    public void testGetBehaviourModifier2() {
+        System.out.println("getBehaviourModifier");
+        Characteristic instance = new Characteristic();
+        float expResult = 0.0F;
+        float result = instance.getBehaviourModifier();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setBehaviourModifier method, of class Characteristic.
+     */
+    @Test
+    public void testSetBehaviourModifier_float_1args() {
+        System.out.println("setBehaviourModifier");
+        float newValue = 0.0F;
+        Characteristic instance = new Characteristic();
+        instance.setBehaviourModifier(newValue);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
 }
