@@ -98,7 +98,7 @@ public class ParticleSimView extends FrameView {
                 }
             }
         }
-        )*/;
+        )*/
 
         // Call the routine to populate the particle combobox.
         PopulateParticleCombo();
@@ -700,8 +700,9 @@ public class ParticleSimView extends FrameView {
         ips.setParticleSizeY(Integer.parseInt(this.jtPSizeY.getText()));
 
         // Initialize the particle array.
-        if(sSelectedParticle.equals("particlesim.ChargedParticle"))
+        if(sSelectedParticle.equals("particlesim.ChargedParticle")) {
             parts = ic.InitializeParticles(Integer.parseInt(this.jtNumP.getText()), this.glGraphics.getWidth(), this.glGraphics.getHeight(), 0, ips, chargedExtras);
+        }
         else if(sSelectedParticle.equals("particlesim.ElecFieldParticle")) {
 
             elecFieldExtras[0] = Integer.parseInt(this.jtElecFld.getText());
@@ -731,7 +732,7 @@ public class ParticleSimView extends FrameView {
             // interface otherwise.
             draw.execute();
         } catch (Exception ex) {
-            Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ParticleSimView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

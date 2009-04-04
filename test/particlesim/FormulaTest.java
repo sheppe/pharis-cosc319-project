@@ -52,48 +52,6 @@ public class FormulaTest {
     }
 
     /**
-     * Test of solv_P method, of class Formula.
-     */
-    @Test
-    public void testSolv_P() {
-        System.out.println("solv_P");
-        Formula instance = null;
-        Matrix expResult = null;
-        Matrix result = instance.solv_P();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of solv_tensor method, of class Formula.
-     */
-    @Test
-    public void testSolv_tensor() {
-        System.out.println("solv_tensor");
-        Formula instance = null;
-        Matrix expResult = null;
-        Matrix result = instance.solv_tensor();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of solv_Phard method, of class Formula.
-     */
-    @Test
-    public void testSolv_Phard() {
-        System.out.println("solv_Phard");
-        Formula instance = null;
-        Matrix expResult = null;
-        Matrix result = instance.solv_Phard();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getPAPParalle method, of class Formula.
      */
     @Test
