@@ -107,7 +107,10 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
             // Draw a sphere to represent the particle.
             this.gl.glPushMatrix();
 
-            this.ellipseMidpoint((int)p1.getX(), (int)p1.getY(), (int)p1.getParticleSize().getParticleSizeX(), (int)p1.getParticleSize().getParticleSizeY());
+            // Divide the particle sizes in half because the value entered by
+            // the user is the diameter of the particle, but the equation works
+            // with radius sizes.
+            this.ellipseMidpoint((int)p1.getX(), (int)p1.getY(), (int)p1.getParticleSize().getParticleSizeX()/2, (int)p1.getParticleSize().getParticleSizeY()/2);
             this.gl.glPopMatrix();
             if(this.isCancelled()) {
                 animator.stop();
@@ -287,47 +290,4 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
         setPixel (xCenter + x, yCenter - y);
         setPixel (xCenter - x, yCenter - y);
     }
-
-    /*
-    void DrawCircle(float cx, float cy, float r, int num_segments)
-    {
-        double theta = 2 * 3.1415926 / num_segments;
-        double tangetial_factor = java.lang.Math.tan(theta);//calculate the tangential factor
-
-        double radial_factor = java.lang.Math.cos(theta);//calculate the radial factor
-
-        float x = r;//we start at angle = 0
-
-        float y = 0;
-
-        this.gl.glBegin(GL.GL_LINE_LOOP);
-        for(int ii = 0; ii < num_segments; ii++)
-        {
-            this.gl.glVertex2f(x + cx, y + cy);//output vertex
-
-            //calculate the tangential vector
-            //remember, the radial vector is (x, y)
-            //to get the tangential vector we flip those coordinates and negate one of them
-
-            float tx = -y;
-            float ty = x;
-
-            //add the tangential vector
-
-            x += tx * tangetial_factor;
-            y += ty * tangetial_factor;
-
-            //correct using the radial factor
-
-            x *= radial_factor;
-            y *= radial_factor;
-        }
-        this.gl.glEnd();
-    }
-
-    int GetNumCircleSegments(float r)
-    {
-        return (int)(2.0f * 3.1415926f / (java.lang.Math.acos(1 - 0.25 / r)));//change the 0.25 to a smaller/bigger number as needed
-    }
-    */
 }

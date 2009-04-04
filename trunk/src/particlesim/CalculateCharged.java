@@ -84,17 +84,21 @@ public class CalculateCharged implements ICalculate {
         ChargedParticle[] cp;
         cp = new ChargedParticle[NumParticles];
 
-        // The size of the particles.
+        // Load up the GridSelector class to get random, unique, positions
+        // is the grid that do no overlap.
+        GridSelector gs = new GridSelector(MaxX, MaxY, ParticleSize.getParticleSizeX(), ParticleSize.getParticleSizeY());
 
         int x = 1;
         for(int i=0; i<NumParticles; i++)
         {
+
             cp[i] = new ChargedParticle();
 
             // Don't forget to assign the ParticleSize class to the particle! 
             // This is so it can be retrieved later.
             cp[i].setParticleSize(ParticleSize);
             
+            /* No longer used... keeping it around in case it becomes useful again. -Sheppe
             // Derive the diameter from the rectangular (x,y) size coordinates.
             // This is done using the following formula:
             // Diameter = 1.30 * ((x*y)0.625) / (x+y)0.25)
@@ -103,15 +107,24 @@ public class CalculateCharged implements ICalculate {
                     ((ParticleSize.getParticleSizeX() +
                     ParticleSize.getParticleSizeY())*0.25)));
             float fPRadius = fPDiameter / 2;
+            */
             
             // Set the charge of the particle (location hard-coded at array index 0).
             cp[i].getCharacteristic()[0].setBehaviourModifier(((x % 2)*2)-1);
             x++;
 
+            java.awt.Point p = gs.GetRandomUniqueSector();
+
+            // If p is null, we're out of grid space, so stop here.
+            if(p == null)
+            {
+                return cp;
+            }
+            
             // Randomly place the particle in a container.
-            cp[i].setX((float)(fPRadius + Math.random() * (MaxX - fPDiameter)));
-            cp[i].setY((float)(fPRadius + Math.random() * (MaxY - fPDiameter)));
-            cp[i].setZ((float)(fPRadius + Math.random() * (MaxZ - fPDiameter)));
+            cp[i].setX((float)(p.getX()));
+            cp[i].setY((float)(p.getY()));
+            cp[i].setZ((float)(MaxZ));
         }
 
         return cp;

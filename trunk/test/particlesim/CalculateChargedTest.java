@@ -63,7 +63,7 @@ public class CalculateChargedTest {
         int MaxZ = 0;
         CalculateCharged instance = new CalculateCharged();
         IParticle[] expResult = null;
-        IParticle[] result = instance.InitializeParticles(NumParticles, MaxX, MaxY, MaxZ);
+        IParticle[] result = instance.InitializeParticles(NumParticles, MaxX, MaxY, MaxZ, null, null);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -94,24 +94,6 @@ public class CalculateChargedTest {
         CalculateCharged instance = new CalculateCharged();
         IParticle[] expResult = null;
         IParticle[] result = instance.CalculateIteration(Particles);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of InitializeParticles method, of class CalculateCharged.
-     */
-    @Test
-    public void testInitializeParticles_4args() {
-        System.out.println("InitializeParticles");
-        int NumParticles = 0;
-        int MaxX = 0;
-        int MaxY = 0;
-        int MaxZ = 0;
-        CalculateCharged instance = new CalculateCharged();
-        IParticle[] expResult = null;
-        IParticle[] result = instance.InitializeParticles(NumParticles, MaxX, MaxY, MaxZ);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
