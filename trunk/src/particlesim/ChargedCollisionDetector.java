@@ -99,16 +99,16 @@ public class ChargedCollisionDetector implements ICollisionDetector {
                     //get forces from x and y axis for particle 1 and 2
                     float forceX1 = p1.getCharacteristic()[1].getBehaviourModifier();
                     float forceY1 = p1.getCharacteristic()[2].getBehaviourModifier();
-                    float forceX2 = p2.getCharacteristic()[1].getBehaviourModifier();
-                    float forceY2 = p2.getCharacteristic()[2].getBehaviourModifier();
+                    //float forceX2 = p2.getCharacteristic()[1].getBehaviourModifier();
+                    //float forceY2 = p2.getCharacteristic()[2].getBehaviourModifier();
                     
                     //reverse the direction of force on P1
                     p1.getCharacteristic()[1].setBehaviourModifier(-forceX1);
                     p1.getCharacteristic()[2].setBehaviourModifier(-forceY1);
 
                     //reverse the force direction on P2
-                    p2.getCharacteristic()[1].setBehaviourModifier(-forceX2);
-                    p2.getCharacteristic()[2].setBehaviourModifier(-forceY2);
+                    //p2.getCharacteristic()[1].setBehaviourModifier(-forceX2);
+                    //p2.getCharacteristic()[2].setBehaviourModifier(-forceY2);
                 }
             }
         }
