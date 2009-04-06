@@ -42,6 +42,8 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
     private CalculateCharged cc = new CalculateCharged();
     final Animator animator = new Animator(this.GraphicsPanel);
 
+    private ChargedCollisionDetector ccd;
+
     // Used for logging particle data.
     private ParticleLogger log = new ParticleLogger();
     // Use to indicate whether or not to log the data.
@@ -65,6 +67,8 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
 
         // Set this class up for drawing to the canvas.
         this.GraphicsPanel.addGLEventListener(this);
+
+        this.ccd = new ChargedCollisionDetector(GraphicsPanel.getWidth(),GraphicsPanel.getHeight());
     }
 
     /**
@@ -76,7 +80,12 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
         GLUT glut = new GLUT();
 
         /* The following line is what causes the calculations to take place. */
+       
+      
         parts = cc.MoveParticles(cc.CalculateIteration(parts));
+        parts = ccd.updateParticleColliedParticle(cc.CalculateIteration(parts));
+        parts = ccd.updateBoundaryColliedParticle(cc.CalculateIteration(parts));
+        //parts = cc.MoveParticles(cc.CalculateIteration(parts));
 
         // Log the data for this iteration.
         if(this.doLog)

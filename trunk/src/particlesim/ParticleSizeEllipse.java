@@ -17,7 +17,7 @@ public class ParticleSizeEllipse implements IParticleSize {
      * @param SizeY The maximum height of the particle.
      * @param SizeZ The maximum depth of the particle.
      */
-    ParticleSizeEllipse()
+    public ParticleSizeEllipse()
     {}
 
     /**
