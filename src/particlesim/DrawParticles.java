@@ -82,10 +82,9 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
         /* The following line is what causes the calculations to take place. */
        
       
-        parts = cc.MoveParticles(cc.CalculateIteration(parts));
-        parts = ccd.updateParticleColliedParticle(cc.CalculateIteration(parts));
-        parts = ccd.updateBoundaryColliedParticle(cc.CalculateIteration(parts));
-        //parts = cc.MoveParticles(cc.CalculateIteration(parts));
+        //parts = ccd.updateParticleColliedParticle(cc.CalculateIteration(parts));
+        //parts = ccd.updateBoundaryColliedParticle(ccd.updateParticleColliedParticle(cc.CalculateIteration(parts)));
+        parts = cc.MoveParticles(ccd.updateParticleColliedParticle(ccd.updateBoundaryColliedParticle(cc.CalculateIteration(parts))));
 
         // Log the data for this iteration.
         if(this.doLog)
@@ -102,14 +101,7 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
 
         for(IParticle p1 : lParticles)
         {
-            if(i % 2 == 0)
-            {
-                this.gl.glColor3f(1, 0, 0);
-            }
-            else
-            {
-                this.gl.glColor3f(0, 0, 1);
-            }
+            this.gl.glColor3f(0, 0, 1);
 
             i++;
 
