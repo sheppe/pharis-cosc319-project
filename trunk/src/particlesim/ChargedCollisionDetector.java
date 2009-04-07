@@ -16,10 +16,11 @@ public class ChargedCollisionDetector implements ICollisionDetector {
     private int frameWidth;
     private int frameHeight;
 
-    public ChargedCollisionDetector(int frameWidth, int frameHeight){
+    public ChargedCollisionDetector(int frameWidth, int frameHeight) {
         this.frameWidth = frameWidth;
         this.frameHeight = frameHeight;
     }
+
     /**
      *
      * @param ChargedParticle P1
@@ -48,15 +49,14 @@ public class ChargedCollisionDetector implements ICollisionDetector {
 
     /**
      *
-     * @param P1
-     * @return
+     * @param IParticle P1
+     * @return boolean. return true, if the particle collid with boundery
      */
-    
     public boolean checkBounderyCollision(IParticle P1) {
         boolean isCollided = false;
 
         //get the radias of a charged particle
-        int radias = (P1.getParticleSize().getParticleSizeX())/2;
+        int radias = (P1.getParticleSize().getParticleSizeX()) / 2;
 
         float particleX = P1.getX();
         float particleY = P1.getY();
@@ -65,17 +65,18 @@ public class ChargedCollisionDetector implements ICollisionDetector {
         int leftBound = radias;
         int bottomBound = frameHeight - radias;
         int topBound = radias;
-/*
+        /*
         System.out.println("leftbound " + leftBound);
         System.out.println("rightbound " + rightBound);
         System.out.println("topBound " + topBound);
         System.out.println("bottomBound " + bottomBound);
- * */
+         * */
         if (particleX < leftBound || particleX > rightBound || particleY < topBound || particleY > bottomBound) {
             isCollided = true;
+
         }
 
-     return isCollided;
+        return isCollided;
     }
 
     /**
@@ -91,24 +92,25 @@ public class ChargedCollisionDetector implements ICollisionDetector {
         // For each particle in the collection, calculate its position in
         // relation to every other particle in the collection.
         for (IParticle p1 : lParticles) {
-            for (IParticle p2 : lParticles) {
+           for (IParticle p2 : lParticles) {
                 boolean isCollided = this.checkParticleCollision(p1, p2);
 
                 if (isCollided) {
 
                     //get forces from x and y axis for particle 1 and 2
-                    float forceX1 = p1.getCharacteristic()[1].getBehaviourModifier();
-                    float forceY1 = p1.getCharacteristic()[2].getBehaviourModifier();
+                    float forceX1 = 3*(p1.getCharacteristic()[1].getBehaviourModifier());
+                    float forceY1 = 3*(p1.getCharacteristic()[2].getBehaviourModifier());
                     //float forceX2 = p2.getCharacteristic()[1].getBehaviourModifier();
                     //float forceY2 = p2.getCharacteristic()[2].getBehaviourModifier();
-                    
+
                     //reverse the direction of force on P1
                     p1.getCharacteristic()[1].setBehaviourModifier(-forceX1);
                     p1.getCharacteristic()[2].setBehaviourModifier(-forceY1);
 
                     //reverse the force direction on P2
-                    //p2.getCharacteristic()[1].setBehaviourModifier(-forceX2);
-                    //p2.getCharacteristic()[2].setBehaviourModifier(-forceY2);
+                   // p2.getCharacteristic()[1].setBehaviourModifier(-forceX2);
+                   // p2.getCharacteristic()[2].setBehaviourModifier(-forceY2);
+
                 }
             }
         }
@@ -120,23 +122,48 @@ public class ChargedCollisionDetector implements ICollisionDetector {
      * @param particles
      * @return
      */
-     public IParticle[] updateBoundaryColliedParticle(IParticle[] particles) {
-         //convert to array
+    public IParticle[] updateBoundaryColliedParticle(IParticle[] particles) {
+        //convert to array
         List<IParticle> lParticles = Arrays.asList(particles);
 
         // For each particle in the collection, calculate its position in
         // relation to every other particle in the collection.
         for (IParticle p1 : lParticles) {
-                boolean isCollided = this.checkBounderyCollision(p1);
+            int radias = (p1.getParticleSize().getParticleSizeX()) / 2;
 
-                if (isCollided) {
-                    //get forces form x and y axis for particle 1 and 2
-                    float forceX1 = p1.getCharacteristic()[1].getBehaviourModifier();
-                    float forceY1 = p1.getCharacteristic()[2].getBehaviourModifier();
+            float particleX = p1.getX();
+            float particleY = p1.getY();
 
-                    //reverse the direction of force on P1
-                    p1.getCharacteristic()[1].setBehaviourModifier(-forceX1);
-                    p1.getCharacteristic()[2].setBehaviourModifier(-forceY1);
+            int rightBound = frameWidth - radias;
+            int leftBound = radias;
+            int bottomBound = frameHeight - radias;
+            int topBound = radias;
+            boolean isCollided = this.checkBounderyCollision(p1);
+
+            if (isCollided) {
+                if(particleX < leftBound){
+                     p1.setX(leftBound);
+                }
+
+                if(particleX > rightBound){
+                     p1.setX(rightBound);
+                }
+
+                 if(particleY < topBound){
+                     p1.setY(topBound);
+                }
+
+                 if(particleY > bottomBound){
+                     p1.setY(bottomBound);
+                }
+
+                //get forces form x and y axis for particle 1 and 2
+                float forceX1 = (p1.getCharacteristic()[1].getBehaviourModifier());
+                float forceY1 = (p1.getCharacteristic()[2].getBehaviourModifier());
+
+                //reverse the direction of force on P1
+                p1.getCharacteristic()[1].setBehaviourModifier(-forceX1);
+                p1.getCharacteristic()[2].setBehaviourModifier(-forceY1);
             }
         }
         return lParticles.toArray(particles);
