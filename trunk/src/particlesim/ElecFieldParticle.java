@@ -1,8 +1,5 @@
 package particlesim;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * An implementation of the IParticle interface for a particle affected by electric fields
  *

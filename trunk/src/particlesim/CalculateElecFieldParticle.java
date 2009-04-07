@@ -183,6 +183,8 @@ public class CalculateElecFieldParticle implements ICalculate {
         ElecFieldParticle[] efp;
         efp = new ElecFieldParticle[NumParticles];
 
+          GridSelector gs = new GridSelector(MaxX, MaxY, ParticleSize.getParticleSizeX(), ParticleSize.getParticleSizeY());
+
         for(int i=0; i<NumParticles; i++)
         {
             efp[i] = new ElecFieldParticle();
@@ -199,16 +201,19 @@ public class CalculateElecFieldParticle implements ICalculate {
             efp[i].getCharacteristic()[12].setBehaviourModifier(extraValues[4]);
 
             
-            float fPMajorDiameter = (float)ParticleSize.getParticleSizeX();
-            float fPMinorDiameter = (float)ParticleSize.getParticleSizeY();
-            float fPMajorRadius = fPMajorDiameter / 2;
-            float fPMinorRadius = fPMinorDiameter / 2;
+            java.awt.Point p = gs.GetRandomUniqueSector();
+
+            // If p is null, we're out of grid space, so stop here.
+            if(p == null)
+            {
+                return efp;
+            }
 
 
             // Randomly place the particle in a container.
-            efp[i].setX((float)(fPMajorRadius + Math.random() * (MaxX - fPMajorDiameter)));
-            efp[i].setY((float)(fPMinorRadius + Math.random() * (MaxY - fPMinorDiameter)));
-            efp[i].setZ((float)(Math.random() * (MaxZ)));
+            efp[i].setX((float)p.getX());
+            efp[i].setY((float)p.getY());
+            efp[i].setZ((float)(MaxZ));
             efp[i].getCharacteristic()[6].setBehaviourModifier((float)Math.random() * 360);
         }
 
