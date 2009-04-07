@@ -47,8 +47,7 @@ public class FormulaTest {
         double expResult = 0.0;
         double result = instance.getDegByTime();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -61,8 +60,7 @@ public class FormulaTest {
         double expResult = 0.0;
         double result = instance.getPAPParalle();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -75,8 +73,7 @@ public class FormulaTest {
         double expResult = 0.0;
         double result = instance.getPAPVertical();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -89,8 +86,7 @@ public class FormulaTest {
         double expResult = 0.0;
         double result = instance.getFieldNull();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -103,8 +99,7 @@ public class FormulaTest {
         double expResult = 0.0;
         double result = instance.getOmega();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -117,8 +112,7 @@ public class FormulaTest {
         double expResult = 0.0;
         double result = instance.getRotaMobility();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -131,8 +125,7 @@ public class FormulaTest {
         double expResult = 0.0;
         double result = instance.getInitDegree();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -145,8 +138,7 @@ public class FormulaTest {
         double expResult = 0.0;
         double result = instance.getDifferDeg();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -159,8 +151,7 @@ public class FormulaTest {
         double expResult = 0.0;
         double result = instance.getDegByTime();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -173,8 +164,7 @@ public class FormulaTest {
         Matrix expResult = null;
         Matrix result = instance.getRotaMatrix();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -187,8 +177,7 @@ public class FormulaTest {
         Matrix expResult = null;
         Matrix result = instance.getRotaInversMatrix();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -201,8 +190,7 @@ public class FormulaTest {
         Matrix expResult = null;
         Matrix result = instance.getTensorMatrix();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -215,8 +203,7 @@ public class FormulaTest {
         Matrix expResult = null;
         Matrix result = instance.getFieldMatrix();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -228,8 +215,7 @@ public class FormulaTest {
         double PAPParalle = 0.0;
         Formula instance = null;
         instance.setPAPParalle(PAPParalle);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -241,8 +227,7 @@ public class FormulaTest {
         double PAPVertical = 0.0;
         Formula instance = null;
         instance.setPAPVertical(PAPVertical);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -254,8 +239,7 @@ public class FormulaTest {
         double fieldNull = 0.0;
         Formula instance = null;
         instance.setFieldNull(fieldNull);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -267,8 +251,7 @@ public class FormulaTest {
         double omega = 0.0;
         Formula instance = null;
         instance.setOmega(omega);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -280,8 +263,7 @@ public class FormulaTest {
         double rotaMobility = 0.0;
         Formula instance = null;
         instance.setRotaMobility(rotaMobility);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -292,8 +274,7 @@ public class FormulaTest {
         System.out.println("setIniDegree");
         Formula instance = null;
         instance.setIniDegree();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -304,8 +285,7 @@ public class FormulaTest {
         System.out.println("setDifferDeg");
         Formula instance = null;
         instance.setDifferDeg();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -316,8 +296,7 @@ public class FormulaTest {
         System.out.println("setDegByTime");
         Formula instance = null;
         instance.setDegByTime();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -330,8 +309,7 @@ public class FormulaTest {
         Matrix expResult = null;
         Matrix result = instance.solvDipoleMoment();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -344,8 +322,7 @@ public class FormulaTest {
         Matrix expResult = null;
         Matrix result = instance.solvTensor();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
 }

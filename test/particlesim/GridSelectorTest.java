@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author Sheppe
  */
-public class ParticleSimAboutBoxTest {
+public class GridSelectorTest {
 
-    public ParticleSimAboutBoxTest() {
+    public GridSelectorTest() {
     }
 
     @BeforeClass
@@ -35,22 +35,6 @@ public class ParticleSimAboutBoxTest {
 
     @After
     public void tearDown() {
-    }
-
-    /**
-     * Test of closeAboutBox method, of class ParticleSimAboutBox.
-     */
-    @Test
-    public void testCloseAboutBox() {
-
-    }
-
-    /**
-     * Test of closeAboutBox method, of class ParticleSimAboutBox.
-     */
-    @Test
-    public void testCloseAboutBox1() {
-
     }
 
 }

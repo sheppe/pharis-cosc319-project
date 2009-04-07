@@ -65,8 +65,6 @@ public class CalculateChargedTest {
         IParticle[] expResult = null;
         IParticle[] result = instance.InitializeParticles(NumParticles, MaxX, MaxY, MaxZ, null, null);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -80,8 +78,6 @@ public class CalculateChargedTest {
         IParticle[] expResult = null;
         IParticle[] result = instance.MoveParticles(Particles);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -95,8 +91,6 @@ public class CalculateChargedTest {
         IParticle[] expResult = null;
         IParticle[] result = instance.CalculateIteration(Particles);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -110,8 +104,6 @@ public class CalculateChargedTest {
         IParticle[] expResult = null;
         IParticle[] result = instance.MoveParticles(Particles);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -125,8 +117,6 @@ public class CalculateChargedTest {
         IParticle[] expResult = null;
         IParticle[] result = instance.CalculateIteration(Particles);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -145,8 +135,6 @@ public class CalculateChargedTest {
         IParticle[] expResult = null;
         IParticle[] result = instance.InitializeParticles(NumParticles, MaxX, MaxY, MaxZ, ParticleSize, extraValues);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -160,8 +148,6 @@ public class CalculateChargedTest {
         IParticle[] expResult = null;
         IParticle[] result = instance.MoveParticles(Particles);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -175,8 +161,6 @@ public class CalculateChargedTest {
         IParticle[] expResult = null;
         IParticle[] result = instance.CalculateIteration(Particles);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -195,8 +179,6 @@ public class CalculateChargedTest {
         IParticle[] expResult = null;
         IParticle[] result = instance.InitializeParticles(NumParticles, MaxX, MaxY, MaxZ, ParticleSize, extraValues);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -210,8 +192,6 @@ public class CalculateChargedTest {
         IParticle[] expResult = null;
         IParticle[] result = instance.MoveParticles(Particles);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }

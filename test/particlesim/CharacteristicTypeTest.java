@@ -47,8 +47,6 @@ public class CharacteristicTypeTest {
         String expResult = "";
         String result = instance.getDescription();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -61,8 +59,6 @@ public class CharacteristicTypeTest {
         String expResult = "";
         String result = instance.getName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -74,8 +70,6 @@ public class CharacteristicTypeTest {
         String newValue = "";
         CharacteristicType instance = new CharacteristicType();
         instance.setDescription(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -87,8 +81,6 @@ public class CharacteristicTypeTest {
         String newValue = "";
         CharacteristicType instance = new CharacteristicType();
         instance.setName(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -101,8 +93,6 @@ public class CharacteristicTypeTest {
         String expResult = "";
         String result = instance.getDescription();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -115,8 +105,6 @@ public class CharacteristicTypeTest {
         String expResult = "";
         String result = instance.getName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -128,8 +116,6 @@ public class CharacteristicTypeTest {
         String newValue = "";
         CharacteristicType instance = new CharacteristicType();
         instance.setDescription(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -141,8 +127,6 @@ public class CharacteristicTypeTest {
         String newValue = "";
         CharacteristicType instance = new CharacteristicType();
         instance.setName(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -155,8 +139,6 @@ public class CharacteristicTypeTest {
         String expResult = "";
         String result = instance.getDescription();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -169,8 +151,6 @@ public class CharacteristicTypeTest {
         String expResult = "";
         String result = instance.getName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -182,8 +162,6 @@ public class CharacteristicTypeTest {
         String newValue = "";
         CharacteristicType instance = new CharacteristicType();
         instance.setDescription(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -195,8 +173,6 @@ public class CharacteristicTypeTest {
         String newValue = "";
         CharacteristicType instance = new CharacteristicType();
         instance.setName(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }

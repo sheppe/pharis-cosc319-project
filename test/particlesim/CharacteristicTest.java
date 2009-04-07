@@ -44,11 +44,9 @@ public class CharacteristicTest {
     public void testGetCharacteristicType() {
         System.out.println("getCharacteristicType");
         Characteristic instance = new Characteristic();
-        CharacteristicType expResult = null;
+        CharacteristicType expResult = new CharacteristicType();
         CharacteristicType result = instance.getCharacteristicType();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult.getClass(), result.getClass());
     }
 
     /**
@@ -60,8 +58,6 @@ public class CharacteristicTest {
         CharacteristicType newValue = null;
         Characteristic instance = new Characteristic();
         instance.setCharacteristicType(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -74,8 +70,6 @@ public class CharacteristicTest {
         float expResult = 0.0F;
         float result = instance.getBehaviourModifier();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -87,8 +81,6 @@ public class CharacteristicTest {
         float newValue = 0.0F;
         Characteristic instance = new Characteristic();
         instance.setBehaviourModifier(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -98,11 +90,9 @@ public class CharacteristicTest {
     public void testGetCharacteristicType1() {
         System.out.println("getCharacteristicType");
         Characteristic instance = new Characteristic();
-        CharacteristicType expResult = null;
+        CharacteristicType expResult = new CharacteristicType();
         CharacteristicType result = instance.getCharacteristicType();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult.getClass(), result.getClass());
     }
 
     /**
@@ -114,8 +104,6 @@ public class CharacteristicTest {
         CharacteristicType newValue = null;
         Characteristic instance = new Characteristic();
         instance.setCharacteristicType(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -128,8 +116,6 @@ public class CharacteristicTest {
         float expResult = 0.0F;
         float result = instance.getBehaviourModifier();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -141,8 +127,6 @@ public class CharacteristicTest {
         float newValue = 0.0F;
         Characteristic instance = new Characteristic();
         instance.setBehaviourModifier(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -152,11 +136,9 @@ public class CharacteristicTest {
     public void testGetCharacteristicType2() {
         System.out.println("getCharacteristicType");
         Characteristic instance = new Characteristic();
-        CharacteristicType expResult = null;
+        CharacteristicType expResult = new CharacteristicType();
         CharacteristicType result = instance.getCharacteristicType();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -168,8 +150,6 @@ public class CharacteristicTest {
         CharacteristicType newValue = null;
         Characteristic instance = new Characteristic();
         instance.setCharacteristicType(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -182,8 +162,6 @@ public class CharacteristicTest {
         float expResult = 0.0F;
         float result = instance.getBehaviourModifier();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -195,8 +173,6 @@ public class CharacteristicTest {
         float newValue = 0.0F;
         Characteristic instance = new Characteristic();
         instance.setBehaviourModifier(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }

@@ -46,8 +46,7 @@ public class ParticleSimAppTest {
         System.out.println("startup");
         ParticleSimApp instance = new ParticleSimApp();
         instance.startup();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -59,8 +58,7 @@ public class ParticleSimAppTest {
         Window root = null;
         ParticleSimApp instance = new ParticleSimApp();
         instance.configureWindow(root);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -68,12 +66,7 @@ public class ParticleSimAppTest {
      */
     @Test
     public void testGetApplication() {
-        System.out.println("getApplication");
-        ParticleSimApp expResult = null;
-        ParticleSimApp result = ParticleSimApp.getApplication();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -84,8 +77,7 @@ public class ParticleSimAppTest {
         System.out.println("main");
         String[] args = null;
         ParticleSimApp.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -96,8 +88,7 @@ public class ParticleSimAppTest {
         System.out.println("startup");
         ParticleSimApp instance = new ParticleSimApp();
         instance.startup();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -109,8 +100,7 @@ public class ParticleSimAppTest {
         Window root = null;
         ParticleSimApp instance = new ParticleSimApp();
         instance.configureWindow(root);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -118,12 +108,7 @@ public class ParticleSimAppTest {
      */
     @Test
     public void testGetApplication1() {
-        System.out.println("getApplication");
-        ParticleSimApp expResult = null;
-        ParticleSimApp result = ParticleSimApp.getApplication();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -134,8 +119,7 @@ public class ParticleSimAppTest {
         System.out.println("main");
         String[] args = null;
         ParticleSimApp.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
 }

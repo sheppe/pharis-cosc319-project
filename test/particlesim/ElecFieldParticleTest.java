@@ -44,11 +44,10 @@ public class ElecFieldParticleTest {
     public void testGetCharacteristic() {
         System.out.println("getCharacteristic");
         ElecFieldParticle instance = new ElecFieldParticle();
-        Characteristic[] expResult = null;
+        Characteristic[] expResult = new Characteristic[17];
         Characteristic[] result = instance.getCharacteristic();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -60,8 +59,7 @@ public class ElecFieldParticleTest {
         Characteristic[] newValue = null;
         ElecFieldParticle instance = new ElecFieldParticle();
         instance.setCharacteristic(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -74,8 +72,7 @@ public class ElecFieldParticleTest {
         Medium expResult = null;
         Medium result = instance.getMedium();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -87,8 +84,7 @@ public class ElecFieldParticleTest {
         Medium newValue = null;
         ElecFieldParticle instance = new ElecFieldParticle();
         instance.setMedium(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -101,8 +97,7 @@ public class ElecFieldParticleTest {
         float expResult = 0.0F;
         float result = instance.getX();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -114,8 +109,7 @@ public class ElecFieldParticleTest {
         float newValue = 0.0F;
         ElecFieldParticle instance = new ElecFieldParticle();
         instance.setX(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -128,8 +122,7 @@ public class ElecFieldParticleTest {
         float expResult = 0.0F;
         float result = instance.getY();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -141,8 +134,7 @@ public class ElecFieldParticleTest {
         float newValue = 0.0F;
         ElecFieldParticle instance = new ElecFieldParticle();
         instance.setY(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -155,8 +147,7 @@ public class ElecFieldParticleTest {
         float expResult = 0.0F;
         float result = instance.getZ();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -168,8 +159,7 @@ public class ElecFieldParticleTest {
         float newValue = 0.0F;
         ElecFieldParticle instance = new ElecFieldParticle();
         instance.setZ(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -179,11 +169,10 @@ public class ElecFieldParticleTest {
     public void testGetCalcName() {
         System.out.println("getCalcName");
         ElecFieldParticle instance = new ElecFieldParticle();
-        String expResult = "";
+        String expResult = "particlesim.CalculateElecFieldParticle";
         String result = instance.getCalcName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -193,11 +182,10 @@ public class ElecFieldParticleTest {
     public void testGetCharacteristic1() {
         System.out.println("getCharacteristic");
         ElecFieldParticle instance = new ElecFieldParticle();
-        Characteristic[] expResult = null;
+        Characteristic[] expResult = new Characteristic[17];
         Characteristic[] result = instance.getCharacteristic();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -209,8 +197,7 @@ public class ElecFieldParticleTest {
         Characteristic[] newValue = null;
         ElecFieldParticle instance = new ElecFieldParticle();
         instance.setCharacteristic(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -223,8 +210,7 @@ public class ElecFieldParticleTest {
         Medium expResult = null;
         Medium result = instance.getMedium();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -236,8 +222,7 @@ public class ElecFieldParticleTest {
         Medium newValue = null;
         ElecFieldParticle instance = new ElecFieldParticle();
         instance.setMedium(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -250,8 +235,7 @@ public class ElecFieldParticleTest {
         float expResult = 0.0F;
         float result = instance.getX();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -263,8 +247,7 @@ public class ElecFieldParticleTest {
         float newValue = 0.0F;
         ElecFieldParticle instance = new ElecFieldParticle();
         instance.setX(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -277,8 +260,7 @@ public class ElecFieldParticleTest {
         float expResult = 0.0F;
         float result = instance.getY();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -290,8 +272,7 @@ public class ElecFieldParticleTest {
         float newValue = 0.0F;
         ElecFieldParticle instance = new ElecFieldParticle();
         instance.setY(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -304,8 +285,7 @@ public class ElecFieldParticleTest {
         float expResult = 0.0F;
         float result = instance.getZ();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -317,8 +297,7 @@ public class ElecFieldParticleTest {
         float newValue = 0.0F;
         ElecFieldParticle instance = new ElecFieldParticle();
         instance.setZ(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -331,8 +310,7 @@ public class ElecFieldParticleTest {
         IParticleSize expResult = null;
         IParticleSize result = instance.getParticleSize();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -344,8 +322,7 @@ public class ElecFieldParticleTest {
         IParticleSize ParticleSize = null;
         ElecFieldParticle instance = new ElecFieldParticle();
         instance.setParticleSize(ParticleSize);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -355,11 +332,10 @@ public class ElecFieldParticleTest {
     public void testGetCalcName1() {
         System.out.println("getCalcName");
         ElecFieldParticle instance = new ElecFieldParticle();
-        String expResult = "";
+        String expResult = "particlesim.CalculateElecFieldParticle";
         String result = instance.getCalcName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -369,11 +345,10 @@ public class ElecFieldParticleTest {
     public void testGetParticleSizeName() {
         System.out.println("getParticleSizeName");
         ElecFieldParticle instance = new ElecFieldParticle();
-        String expResult = "";
+        String expResult = "particlesim.ParticleSizeEllipse";
         String result = instance.getParticleSizeName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
 }

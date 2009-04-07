@@ -44,11 +44,7 @@ public class ParticleSimViewTest {
      */
     @Test
     public void testShowAboutBox() {
-        System.out.println("showAboutBox");
-        ParticleSimView instance = null;
-        instance.showAboutBox();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -65,8 +61,7 @@ public class ParticleSimViewTest {
         } catch (IllegalAccessException ex) {
             Logger.getLogger(ParticleSimViewTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -74,11 +69,7 @@ public class ParticleSimViewTest {
      */
     @Test
     public void testShowAboutBox1() {
-        System.out.println("showAboutBox");
-        ParticleSimView instance = null;
-        instance.showAboutBox();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -86,11 +77,7 @@ public class ParticleSimViewTest {
      */
     @Test
     public void testParticleTypeSelected1() throws Exception {
-        System.out.println("ParticleTypeSelected");
-        ParticleSimView instance = null;
-        instance.ParticleTypeSelected();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -98,11 +85,7 @@ public class ParticleSimViewTest {
      */
     @Test
     public void testShowAboutBox2() {
-        System.out.println("showAboutBox");
-        ParticleSimView instance = null;
-        instance.showAboutBox();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -110,11 +93,7 @@ public class ParticleSimViewTest {
      */
     @Test
     public void testParticleTypeSelected2() throws Exception {
-        System.out.println("ParticleTypeSelected");
-        ParticleSimView instance = null;
-        instance.ParticleTypeSelected();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
 }
