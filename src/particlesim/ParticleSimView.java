@@ -346,14 +346,14 @@ public class ParticleSimView extends FrameView {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jMobilityPerpText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(glGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 439, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(glGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 429, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(mainPanelLayout.createSequentialGroup()
-                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, glGraphics, 0, 0, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, mainPanelLayout.createSequentialGroup()
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .add(jLabel2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -393,12 +393,13 @@ public class ParticleSimView extends FrameView {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jLabel3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jcDoLog)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jbRun)
-                .addContainerGap())
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jcDoLog)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jbRun))
+                    .add(glGraphics, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 448, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jcDoLog.getAccessibleContext().setAccessibleName(resourceMap.getString("jCheckBox1.AccessibleContext.accessibleName")); // NOI18N
@@ -622,7 +623,22 @@ public class ParticleSimView extends FrameView {
             this.jtElecFld.setVisible(false);
             this.jElecFieldLabel.setVisible(false);
         }
-        
+        else
+        {
+            this.jMobilityLabel.setVisible(true);
+            this.jMobilityParallelLabel.setVisible(true);
+            this.jMobilityPerpLabel.setVisible(true);
+            this.jMobilityParallelText.setVisible(true);
+            this.jMobilityPerpText.setVisible(true);
+            this.jPolarizabilityLabel.setVisible(true);
+            this.jPolarizabilityParallelLabel.setVisible(true);
+            this.jPolarizabilityPerpLabel.setVisible(true);
+            this.jPolarizabilityParallelText.setVisible(true);
+            this.jPolarizabilityPerpText.setVisible(true);
+            this.jtElecFld.setVisible(true);
+            this.jElecFieldLabel.setVisible(true);
+        }
+
         // Load and initialize the selected particle type.
         Class p = null;
         try {
@@ -674,7 +690,7 @@ public class ParticleSimView extends FrameView {
 
         //Extra value arrays for each particle type
         int[] chargedExtras = new int[0];
-        int[] elecFieldExtras = new int[4];
+        int[] elecFieldExtras = new int[5];
 
         Class cl = null;
         Object ob = null;
