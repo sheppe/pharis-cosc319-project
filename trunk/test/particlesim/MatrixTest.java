@@ -47,8 +47,7 @@ public class MatrixTest {
         String expResult = "";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -63,8 +62,7 @@ public class MatrixTest {
         double expResult = 0.0;
         double result = instance.getValue(r, c);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -77,8 +75,7 @@ public class MatrixTest {
         int expResult = 0;
         int result = instance.getMatrixRowSize();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -91,8 +88,7 @@ public class MatrixTest {
         int expResult = 0;
         int result = instance.getMatrixColSize();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -106,8 +102,7 @@ public class MatrixTest {
         Matrix expResult = null;
         Matrix result = instance.s_multiply(matrixB);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -121,8 +116,7 @@ public class MatrixTest {
         Matrix expResult = null;
         Matrix result = instance.multiply(matrixB);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
 }

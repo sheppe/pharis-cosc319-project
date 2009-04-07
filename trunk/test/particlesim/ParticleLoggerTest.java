@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author Sheppe
  */
-public class ParticleSimAboutBoxTest {
+public class ParticleLoggerTest {
 
-    public ParticleSimAboutBoxTest() {
+    public ParticleLoggerTest() {
     }
 
     @BeforeClass
@@ -38,18 +38,15 @@ public class ParticleSimAboutBoxTest {
     }
 
     /**
-     * Test of closeAboutBox method, of class ParticleSimAboutBox.
+     * Test of Log method, of class ParticleLogger.
      */
     @Test
-    public void testCloseAboutBox() {
-
-    }
-
-    /**
-     * Test of closeAboutBox method, of class ParticleSimAboutBox.
-     */
-    @Test
-    public void testCloseAboutBox1() {
+    public void testLog() {
+        System.out.println("Log");
+        int TimeStep = 0;
+        IParticle[] Particles = null;
+        ParticleLogger instance = new ParticleLogger();
+        instance.Log(TimeStep, Particles);
 
     }
 

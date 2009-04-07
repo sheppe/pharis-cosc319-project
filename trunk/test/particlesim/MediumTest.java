@@ -47,8 +47,7 @@ public class MediumTest {
         float expResult = 0.0F;
         float result = instance.getGravity();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -61,8 +60,7 @@ public class MediumTest {
         String expResult = "";
         String result = instance.getName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -75,8 +73,7 @@ public class MediumTest {
         float expResult = 0.0F;
         float result = instance.getViscosity();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -88,8 +85,7 @@ public class MediumTest {
         float newValue = 0.0F;
         Medium instance = new Medium();
         instance.setGravity(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -101,8 +97,7 @@ public class MediumTest {
         String newValue = "";
         Medium instance = new Medium();
         instance.setName(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -114,8 +109,7 @@ public class MediumTest {
         float newValue = 0.0F;
         Medium instance = new Medium();
         instance.setViscosity(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -128,8 +122,7 @@ public class MediumTest {
         float expResult = 0.0F;
         float result = instance.getGravity();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -142,8 +135,7 @@ public class MediumTest {
         String expResult = "";
         String result = instance.getName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -156,8 +148,7 @@ public class MediumTest {
         float expResult = 0.0F;
         float result = instance.getViscosity();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -169,8 +160,7 @@ public class MediumTest {
         float newValue = 0.0F;
         Medium instance = new Medium();
         instance.setGravity(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -182,8 +172,7 @@ public class MediumTest {
         String newValue = "";
         Medium instance = new Medium();
         instance.setName(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -195,8 +184,7 @@ public class MediumTest {
         float newValue = 0.0F;
         Medium instance = new Medium();
         instance.setViscosity(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -209,8 +197,7 @@ public class MediumTest {
         float expResult = 0.0F;
         float result = instance.getGravity();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -223,8 +210,7 @@ public class MediumTest {
         String expResult = "";
         String result = instance.getName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -237,8 +223,7 @@ public class MediumTest {
         float expResult = 0.0F;
         float result = instance.getViscosity();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -250,8 +235,7 @@ public class MediumTest {
         float newValue = 0.0F;
         Medium instance = new Medium();
         instance.setGravity(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -263,8 +247,7 @@ public class MediumTest {
         String newValue = "";
         Medium instance = new Medium();
         instance.setName(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -276,8 +259,7 @@ public class MediumTest {
         float newValue = 0.0F;
         Medium instance = new Medium();
         instance.setViscosity(newValue);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
 }
