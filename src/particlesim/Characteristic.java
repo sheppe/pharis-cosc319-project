@@ -18,7 +18,7 @@ public class Characteristic implements ICharacteristic {
 	public Characteristic() {
 		// Initialize the variables that persist property values.
 		ct = new CharacteristicType();
-		bm = 0;
+		bm = 0.0F;
 	}
 
     /**

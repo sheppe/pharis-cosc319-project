@@ -16,6 +16,11 @@ public class CalculateCharged implements ICalculate {
      */
 	public IParticle[] CalculateIteration(IParticle[] Particles)
 	{
+        if(Particles == null)
+        {
+            return null;
+        }
+
         double dDistSq = 0;
         double dRepulsion = 0;
         double dRepulsionX = 0;
@@ -80,6 +85,11 @@ public class CalculateCharged implements ICalculate {
      * @return An array of particles as modified by the function.
      */
     public IParticle[] InitializeParticles(int NumParticles, int MaxX, int MaxY, int MaxZ, IParticleSize ParticleSize, int[] extraValues) {
+        if(ParticleSize == null || extraValues == null)
+        {
+            return null;
+        }
+
         // Create our charged particles array, using the number of particles passed in.
         ChargedParticle[] cp;
         cp = new ChargedParticle[NumParticles];
@@ -136,6 +146,11 @@ public class CalculateCharged implements ICalculate {
      * @return
      */
     public IParticle[] MoveParticles(IParticle[] Particles) {
+        if(Particles == null)
+        {
+            return null;
+        }
+
         // Used to adjust the rate of particle movement.
         // Should be used for display purposes only!
         //float movementModifier = 1.01f;
