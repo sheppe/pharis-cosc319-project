@@ -8,7 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
+ * This class will check collisoin particle between particle and particle between boundery.
+ * If they did, then update their movements.
  * @author Yuehan
  */
 public class ChargedCollisionDetector implements ICollisionDetector {
@@ -40,7 +41,7 @@ public class ChargedCollisionDetector implements ICollisionDetector {
         // get the distance between two particles
         double distance = Math.abs(Math.sqrt(deltaX * deltaX + deltaY * deltaY));
 
-        if (distance < diameter) {
+        if (distance <= diameter) {
             isCollided = true;
         }
 
@@ -65,13 +66,8 @@ public class ChargedCollisionDetector implements ICollisionDetector {
         int leftBound = radias;
         int bottomBound = frameHeight - radias;
         int topBound = radias;
-        /*
-        System.out.println("leftbound " + leftBound);
-        System.out.println("rightbound " + rightBound);
-        System.out.println("topBound " + topBound);
-        System.out.println("bottomBound " + bottomBound);
-         * */
-        if (particleX < leftBound || particleX > rightBound || particleY < topBound || particleY > bottomBound) {
+        
+        if (particleX <= leftBound || particleX >= rightBound || particleY <= topBound || particleY >= bottomBound) {
             isCollided = true;
 
         }
@@ -82,7 +78,7 @@ public class ChargedCollisionDetector implements ICollisionDetector {
     /**
      *
      * @param particles
-     * @return
+     * @return updated particles
      */
     public IParticle[] updateParticleColliedParticle(IParticle[] particles) {
 
@@ -97,21 +93,15 @@ public class ChargedCollisionDetector implements ICollisionDetector {
 
                 if (isCollided) {
 
-                    //get forces from x and y axis for particle 1 and 2
-                    float forceX1 = 3*(p1.getCharacteristic()[1].getBehaviourModifier());
-                    float forceY1 = 3*(p1.getCharacteristic()[2].getBehaviourModifier());
-                    //float forceX2 = p2.getCharacteristic()[1].getBehaviourModifier();
-                    //float forceY2 = p2.getCharacteristic()[2].getBehaviourModifier();
+                    //get forces from x and y axis for particle 1
+                    float forceX1 = 10 *(p1.getCharacteristic()[1].getBehaviourModifier());
+                    float forceY1 = 10 *(p1.getCharacteristic()[2].getBehaviourModifier());
 
                     //reverse the direction of force on P1
                     p1.getCharacteristic()[1].setBehaviourModifier(-forceX1);
                     p1.getCharacteristic()[2].setBehaviourModifier(-forceY1);
 
-                    //reverse the force direction on P2
-                   // p2.getCharacteristic()[1].setBehaviourModifier(-forceX2);
-                   // p2.getCharacteristic()[2].setBehaviourModifier(-forceY2);
-
-                }
+                   }
             }
         }
         return lParticles.toArray(particles);
@@ -120,7 +110,7 @@ public class ChargedCollisionDetector implements ICollisionDetector {
     /**
      *
      * @param particles
-     * @return
+     * @return updated particles
      */
     public IParticle[] updateBoundaryColliedParticle(IParticle[] particles) {
         //convert to array
@@ -141,7 +131,9 @@ public class ChargedCollisionDetector implements ICollisionDetector {
             boolean isCollided = this.checkBounderyCollision(p1);
 
             if (isCollided) {
-                if(particleX < leftBound){
+
+                // the folowing 4 if conditions is making sure that keeping all particle inside of the boundery.
+                if(particleX <= leftBound){
                      p1.setX(leftBound);
                 }
 
@@ -157,9 +149,9 @@ public class ChargedCollisionDetector implements ICollisionDetector {
                      p1.setY(bottomBound);
                 }
 
-                //get forces form x and y axis for particle 1 and 2
-                float forceX1 = (p1.getCharacteristic()[1].getBehaviourModifier());
-                float forceY1 = (p1.getCharacteristic()[2].getBehaviourModifier());
+                //get forces form x and y axis for particle 1
+                float forceX1 = 10*(p1.getCharacteristic()[1].getBehaviourModifier());
+                float forceY1 = 10*(p1.getCharacteristic()[2].getBehaviourModifier());
 
                 //reverse the direction of force on P1
                 p1.getCharacteristic()[1].setBehaviourModifier(-forceX1);
