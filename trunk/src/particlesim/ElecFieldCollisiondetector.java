@@ -8,7 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
+ * This class will check collisoin on particle between particle and particle between boundery.
+ * If they did, then update their movements.(The particle type should be Electic field particle)
  * @author Yuehan
  */
 public class ElecFieldCollisiondetector implements ICollisionDetector {
@@ -46,7 +47,7 @@ public class ElecFieldCollisiondetector implements ICollisionDetector {
     /**
      *
      * @param P1
-     * @return
+     * @return boolean. Collision ocurred if result is true. Otherwie return false.
      */
     public boolean checkBounderyCollision(IParticle P1) {
         boolean isCollided = false;
@@ -69,6 +70,11 @@ public class ElecFieldCollisiondetector implements ICollisionDetector {
         return isCollided;
     }
 
+    /**
+     *
+     * @param particles
+     * @return updated particles
+     */
     public IParticle[] updateParticleColliedParticle(IParticle[] particles) {
         //convert to array
         List<IParticle> lParticles = Arrays.asList(particles);
@@ -83,40 +89,66 @@ public class ElecFieldCollisiondetector implements ICollisionDetector {
 
                     //get velocity from x and y axis for particle 1 and 2
                     float velocityX1 = p1.getCharacteristic()[4].getBehaviourModifier();
-                    float velocityY1 = p1.getCharacteristic()[5].getBehaviourModifier();
-                    float velocityX2 = p2.getCharacteristic()[4].getBehaviourModifier();
-                    float velocityY2 = p2.getCharacteristic()[5].getBehaviourModifier();
+                    float velocityY1 = p1.getCharacteristic()[5].getBehaviourModifier();                 
 
                     //reverse the velocity direction on P1
                     p1.getCharacteristic()[4].setBehaviourModifier(-velocityX1);
                     p1.getCharacteristic()[5].setBehaviourModifier(-velocityY1);
-
-                    //reverse the force direction on P2
-                    p2.getCharacteristic()[4].setBehaviourModifier(-velocityX2);
-                    p2.getCharacteristic()[5].setBehaviourModifier(-velocityY2);
-                }
+                   }
             }
         }
         return lParticles.toArray(particles);
     }
 
+    /**
+     *
+     * @param particles
+     * @return updated particles
+     */
     public IParticle[] updateBoundaryColliedParticle(IParticle[] particles) {
-          //convert to array
+        //convert to array
         List<IParticle> lParticles = Arrays.asList(particles);
 
         // For each particle in the collection, calculate its position in
         // relation to every other particle in the collection.
         for (IParticle p1 : lParticles) {
-                boolean isCollided = this.checkBounderyCollision(p1);
+            int radias = (p1.getParticleSize().getParticleSizeX()) / 2;
 
-                if (isCollided) {
-                    //get forces form x and y axis for particle 1 and 2
-                    float velocityX = p1.getCharacteristic()[4].getBehaviourModifier();
-                    float velocityY = p1.getCharacteristic()[5].getBehaviourModifier();
+            float particleX = p1.getX();
+            float particleY = p1.getY();
 
-                    //reverse the direction of force on P1
-                    p1.getCharacteristic()[4].setBehaviourModifier(-velocityX);
-                    p1.getCharacteristic()[5].setBehaviourModifier(-velocityY);
+            int rightBound = frameWidth - radias;
+            int leftBound = radias;
+            int bottomBound = frameHeight - radias;
+            int topBound = radias;
+            boolean isCollided = this.checkBounderyCollision(p1);
+
+            if (isCollided) {
+
+                // the folowing 4 if conditions is making sure that keeping all particle inside of the boundery.
+                if (particleX <= leftBound) {
+                    p1.setX(leftBound);
+                }
+
+                if (particleX > rightBound) {
+                    p1.setX(rightBound);
+                }
+
+                if (particleY < topBound) {
+                    p1.setY(topBound);
+                }
+
+                if (particleY > bottomBound) {
+                    p1.setY(bottomBound);
+                }
+
+                //get velocity form x and y axis for particle 1 and 2
+                float velocityX = p1.getCharacteristic()[4].getBehaviourModifier();
+                float velocityY = p1.getCharacteristic()[5].getBehaviourModifier();
+
+                //reverse the direction of velocity on P1
+                p1.getCharacteristic()[4].setBehaviourModifier(-velocityX);
+                p1.getCharacteristic()[5].setBehaviourModifier(-velocityY);
             }
         }
         return lParticles.toArray(particles);
