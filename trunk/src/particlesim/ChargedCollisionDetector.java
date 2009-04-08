@@ -8,8 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * This class will check collisoin particle between particle and particle between boundery.
- * If they did, then update their movements.
+ * This class will check collisoin on particle between particle and particle between boundery.
+ * If they did, then update their movements.(The particle type should be charged particle)
  * @author Yuehan
  */
 public class ChargedCollisionDetector implements ICollisionDetector {
@@ -100,7 +100,6 @@ public class ChargedCollisionDetector implements ICollisionDetector {
                     //reverse the direction of force on P1
                     p1.getCharacteristic()[1].setBehaviourModifier(-forceX1);
                     p1.getCharacteristic()[2].setBehaviourModifier(-forceY1);
-
                    }
             }
         }
