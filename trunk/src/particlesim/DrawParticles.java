@@ -101,7 +101,7 @@ public class DrawParticles extends SwingWorker<Void, Graphics> implements GLEven
 
         for(IParticle p1 : lParticles)
         {
-            this.gl.glColor3f(0, 0, 1);
+            this.gl.glColor3f(1, 0, 0);
 
             i++;
 
