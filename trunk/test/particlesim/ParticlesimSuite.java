@@ -18,7 +18,7 @@ import particlesim.resources.ResourcesSuite;
  * @author Sheppe
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({FormulaTestCase.class, CalculateChargedTest.class, ChargedParticleTest.class, MediumTest.class, MatrixTestCase.class, CharacteristicTest.class, CharacteristicTypeTest.class, ResourcesSuite.class, ParticleSimViewTest.class, ElecFieldParticleTest.class, ParticleSimAboutBoxTest.class, ParticleSimAppTest.class, DrawParticlesTest.class})
+@Suite.SuiteClasses({FormulaTest.class, CalculateChargedTest.class, ChargedParticleTest.class, MediumTest.class, MatrixTest.class, CharacteristicTest.class, CharacteristicTypeTest.class, ResourcesSuite.class, ParticleSimViewTest.class, ElecFieldParticleTest.class, ParticleSimAboutBoxTest.class, ParticleSimAppTest.class, DrawParticlesTest.class})
 public class ParticlesimSuite {
 
     @BeforeClass

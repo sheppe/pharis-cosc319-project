@@ -4,6 +4,12 @@ import java.text.DecimalFormat;
 import junit.framework.TestCase;
 import particlesim.Formula;
 import particlesim.Matrix;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*
  * To change this template, choose Tools | Templates
@@ -13,7 +19,7 @@ import particlesim.Matrix;
  *
  * @author Yuehan
  */
-public class FormulaTestCase extends TestCase {
+public class FormulaTest extends TestCase {
 
     private double degree = 30;
 
@@ -37,7 +43,7 @@ public class FormulaTestCase extends TestCase {
 
             double ran = p.getInitDegree();
             if(ran > 360.0 || ran < 0){
-                FormulaTestCase.fail();
+                FormulaTest.fail();
             }
             if(ran > max){
                 max = ran;
@@ -61,9 +67,9 @@ public class FormulaTestCase extends TestCase {
         double answer = Double.parseDouble(df.format(answer0));
         double wrongAns = 0.3333;
 
-        FormulaTestCase.assertEquals(answer0, result0, 0.000000001);
-        FormulaTestCase.assertTrue(result == answer);
-        FormulaTestCase.assertFalse(result == wrongAns);
+        FormulaTest.assertEquals(answer0, result0, 0.000000001);
+        FormulaTest.assertTrue(result == answer);
+        FormulaTest.assertFalse(result == wrongAns);
 
         System.out.println("The expected answer is " + result0 + ", and actural result is: " + answer0);
     }
@@ -75,11 +81,11 @@ public class FormulaTestCase extends TestCase {
         double answer = (iniDegree + difDegree)%360;
         double wrongAns = 0.33334;
 
-        FormulaTestCase.assertEquals(answer, result);
-        FormulaTestCase.assertTrue(result == answer);
-        FormulaTestCase.assertFalse(result == wrongAns);
+        FormulaTest.assertEquals(answer, result);
+        FormulaTest.assertTrue(result == answer);
+        FormulaTest.assertFalse(result == wrongAns);
 
-        FormulaTestCase.assertEquals(answer, result);
+        FormulaTest.assertEquals(answer, result);
         System.out.println("The expected answer is " + result + ", and actural result is: " + answer);
     }
 
@@ -96,10 +102,10 @@ public class FormulaTestCase extends TestCase {
           Matrix answer = a.multiply(c).multiply(b).s_multiply(d);
           
           //test result against the right answer
-          FormulaTestCase.assertTrue(result.equals(answer));
+          FormulaTest.assertTrue(result.equals(answer));
           
           //test result against the wrong answer
-          FormulaTestCase.assertFalse(result.equals(d));
+          FormulaTest.assertFalse(result.equals(d));
 
           System.out.println("A: " + answer);
           System.out.println("R: " + result);
@@ -115,10 +121,10 @@ public class FormulaTestCase extends TestCase {
           Matrix answer = a.multiply(c).multiply(b);
 
           //test result against the right answer
-          FormulaTestCase.assertTrue(result.equals(answer));
+          FormulaTest.assertTrue(result.equals(answer));
 
           //test result against the wrong answer
-          FormulaTestCase.assertFalse(result.equals(c));
+          FormulaTest.assertFalse(result.equals(c));
 
           System.out.println("A: " + answer);
           System.out.println("R: " + result);

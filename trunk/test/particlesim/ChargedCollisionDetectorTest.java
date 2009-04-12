@@ -6,6 +6,12 @@ import particlesim.CharacteristicType;
 import particlesim.ChargedCollisionDetector;
 import particlesim.ChargedParticle;
 import particlesim.ParticleSizeEllipse;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*
  * To change this template, choose Tools | Templates
@@ -18,7 +24,7 @@ import particlesim.ParticleSizeEllipse;
  * implement testcase for ElecFieldCollisiondetector class.
  * @author Yuehan
  */
-public class ChargedCollisionDetectorTestCase extends TestCase{
+public class ChargedCollisionDetectorTest extends TestCase{
     ChargedParticle p1;
     ChargedParticle p2;
     ChargedParticle p3;
@@ -130,10 +136,10 @@ public class ChargedCollisionDetectorTestCase extends TestCase{
         this.init();
 
         boolean result = ccd.checkParticleCollision(p1, p2);
-        ChargedCollisionDetectorTestCase.assertTrue(result);
+        ChargedCollisionDetectorTest.assertTrue(result);
 
          boolean result2 = ccd.checkParticleCollision(p1, p3);
-        ChargedCollisionDetectorTestCase.assertFalse(result2);
+        ChargedCollisionDetectorTest.assertFalse(result2);
     }
 
     /**
@@ -143,10 +149,10 @@ public class ChargedCollisionDetectorTestCase extends TestCase{
         this.init();
 
         boolean result1 = ccd.checkBounderyCollision(p3);
-        ChargedCollisionDetectorTestCase.assertTrue(result1);
+        ChargedCollisionDetectorTest.assertTrue(result1);
 
         boolean result2 = ccd.checkBounderyCollision(p1);
-        ChargedCollisionDetectorTestCase.assertFalse(result2);
+        ChargedCollisionDetectorTest.assertFalse(result2);
     }
 
     /**
@@ -184,8 +190,8 @@ public class ChargedCollisionDetectorTestCase extends TestCase{
         System.out.println("resultX is "+ resultX1 + "resultY is " + resultY1);
         System.out.println("expect resultX is "+ answerX1 + "expect resultY is " + answerY1);
 
-        ChargedCollisionDetectorTestCase.assertTrue(trueResult);
-        ChargedCollisionDetectorTestCase.assertFalse(falseResult);
+        ChargedCollisionDetectorTest.assertTrue(trueResult);
+        ChargedCollisionDetectorTest.assertFalse(falseResult);
     }
 
     /**
@@ -212,8 +218,8 @@ public class ChargedCollisionDetectorTestCase extends TestCase{
             falseResult = true;
         }
         
-        ChargedCollisionDetectorTestCase.assertTrue(trueResult);
-        ChargedCollisionDetectorTestCase.assertFalse(falseResult);
+        ChargedCollisionDetectorTest.assertTrue(trueResult);
+        ChargedCollisionDetectorTest.assertFalse(falseResult);
 
     }
 }
