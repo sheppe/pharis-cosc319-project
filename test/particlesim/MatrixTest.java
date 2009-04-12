@@ -2,6 +2,12 @@ package particlesim;
 
 import junit.framework.TestCase;
 import particlesim.Matrix;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /*
  * To change this template, choose Tools | Templates
@@ -12,7 +18,7 @@ import particlesim.Matrix;
  *
  * @author Yuehan
  */
-public class MatrixTestCase extends TestCase{
+public class MatrixTest extends TestCase{
      private double[][] doubleArr0 = {{5},{5}};
      private Matrix myMat0 = new Matrix(doubleArr0);
 
@@ -32,10 +38,10 @@ public class MatrixTestCase extends TestCase{
           Matrix answer = new Matrix(answerArr);
 
           //test result against the right answer
-          MatrixTestCase.assertTrue(result.equals(answer));
+          MatrixTest.assertTrue(result.equals(answer));
 
           //test result against the wrong answer
-          MatrixTestCase.assertFalse(result.equals(myMat0));
+          MatrixTest.assertFalse(result.equals(myMat0));
     }
 
     public void testMultiply(){
@@ -45,18 +51,18 @@ public class MatrixTestCase extends TestCase{
           Matrix answer = new Matrix(answerArr);
 
           //test the result against the right answer
-          MatrixTestCase.assertTrue(result.equals(answer));
+          MatrixTest.assertTrue(result.equals(answer));
 
           //test the result against the wrong answer
-          MatrixTestCase.assertFalse(result.equals(myMat3));
+          MatrixTest.assertFalse(result.equals(myMat3));
     }
 
     public void testIs2by1Matrix(){
         //when the matrix is 2 by 2 matrix
-        MatrixTestCase.assertFalse(myMat3.is2by1Matrix());
+        MatrixTest.assertFalse(myMat3.is2by1Matrix());
 
         //when the matrix is a 2 by 1 matrix
-        MatrixTestCase.assertTrue(myMat0.is2by1Matrix());
+        MatrixTest.assertTrue(myMat0.is2by1Matrix());
     }
 
     public void testEquals(){
@@ -70,16 +76,16 @@ public class MatrixTestCase extends TestCase{
         Matrix answer1 = new Matrix(answerArr1);
 
         //test when two 2 by 2 matrix is equal
-        MatrixTestCase.assertTrue(myMat2.equals(answer));
+        MatrixTest.assertTrue(myMat2.equals(answer));
 
         //test when two 2 by 2 matrix is not equal
-        MatrixTestCase.assertFalse(myMat2.equals(myMat3));
+        MatrixTest.assertFalse(myMat2.equals(myMat3));
 
         //test when two 2 by 1 matrix is equal
-        MatrixTestCase.assertTrue(myMat0.equals(answer0));
+        MatrixTest.assertTrue(myMat0.equals(answer0));
 
         //test when two 2 by 1 matrix is not equal
-        MatrixTestCase.assertFalse(myMat0.equals(answer1));
+        MatrixTest.assertFalse(myMat0.equals(answer1));
     }
   
 }
